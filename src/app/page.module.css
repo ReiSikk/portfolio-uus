@@ -1,3 +1,7 @@
+/*
+   Global styles for the page layout and reset styles.
+   ========================================================================== */
+
 .page {
   --gray-rgb: 0, 0, 0;
   --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
@@ -6,107 +10,226 @@
   --button-primary-hover: #383838;
   --button-secondary-hover: #f2f2f2;
 
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
   font-family: var(--font-geist-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
+/*
+    Header section
+    ========================================================================== */
+    .siteHeader {
+      position: relative;
+      background: var(--dark);
+      z-index: 1;
+      padding-bottom: 64px;
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
+      @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+        padding-bottom: 8.88vw;
+      }
+    }
+    .hero {
+      margin-top: 48px;
+
+      @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+        margin-top: 3.333vw;    
+      }
+
+    }
+    .heroTitle {
+      line-height: 1.1;
+      @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+        max-width: 49.51vw;
+      }
+    }
+    .heroBtn {
+      margin-top: 48px;
+
+      @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+        margin-top: 4.444vw;
+      }
+    }
+
+/*
+   Navigation bar
+   ========================================================================== */
+   .siteNav {
+    padding-block: 32px;
+  }
+  .siteNavList {
+    align-items: center;
+    justify-content: space-between;
+  }
+  .siteNavList > li:last-of-type {
+    align-items: center;
+    gap: clamp(16px, 2.4vw, 24px);
+  }
+  .siteNavList > li:last-of-type > svg {
+    stroke: var(--cream);
+    height: 24px;
+    width: 24px;
+  }
+
+/*
+   Main content section
+   ========================================================================== */
+
+.main {
+  position: relative;
+  z-index: 1;
+  background: var(--dark);
+}
+.projects {
+
+}
+.projectsTitle {
+  margin-bottom: 16px;
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    margin-bottom: 2.777vw;
+  }
+}
+.projectsList {
+
+}
+.projectsList__item {
+  margin-bottom: 16px;
+}
+
+.trigger {
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--cream);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  padding-block: clamp(16px, 2vw, 24px);
+
+  &:hover {
+    opacity: 1;
+  }
+  &:not(:hover) {
+    opacity: 0.7;
   }
 }
 
-.main {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
-}
-
-.main ol {
-  font-family: var(--font-geist-mono);
-  padding-left: 0;
-  margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  list-style-position: inside;
-}
-
-.main li:not(:last-of-type) {
-  margin-bottom: 8px;
-}
-
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.ctas {
-  display: flex;
-  gap: 16px;
-}
-
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
+.triggerIcon {
+  stroke: var(--accent);
+  transition: transform 0.3s ease;
   height: 48px;
-  padding: 0 20px;
-  border: none;
-  border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
+  width: 48px;
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+      height: 96px;
+      width: 96px;
+  }
 }
 
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
+.triggerContent {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.5s ease;
+  padding: 0;
 }
 
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 180px;
+.triggerContent.active {
+  height: auto;
+  opacity: 1;
+  padding: 24px 0;
 }
 
+.trigger.active .triggerIcon {
+  transform: rotate(90deg);
+}
+/* Services section in Main */
+.services {
+  margin-top: 48px;
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    margin-top: 8.888vw;
+  }
+}
+.servicesTitle {
+  margin-bottom: clamp(32px, 5vw, 48px);
+}
+.servicesList {
+  gap: 16px 24px;
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+      flex-direction: row;
+  }
+}
+.servicesList__item {
+  padding: clamp(24px, 6vw, 56px);
+  background: #0B0B0B;
+}
+.serviceTitle {
+  margin-bottom: clamp(16px, 2vw, 24px);
+
+}
+.serviceText {
+  font-size: 1.4rem;
+  line-height: 1.6;
+}
+/* About section in Main */
+.about {
+  margin-top: 48px;
+  padding-bottom: 64px;
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    margin-top: 8.888vw;
+    padding-bottom: 8.88vw;
+  }
+}
+.aboutTitle {
+  margin-bottom: 48px;
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+      line-height: 0.9;
+      margin-bottom: 6.9444vw;
+  }
+
+}
+.aboutText {
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    max-width: 49.51vw;
+  }
+}
+
+
+/*
+   Footer
+   ========================================================================== */
 .footer {
-  grid-row-start: 3;
-  display: flex;
-  gap: 24px;
+  background: #0B0B0B;
+  padding-block: 64px;
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    padding-block: 8.333vw;
+  }
+
 }
 
-.footer a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.footerWrap {
+
 }
 
-.footer img {
-  flex-shrink: 0;
+.footerTitle {
+  margin-bottom: 16px;
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    margin-bottom: 1.666vw;
+  }
 }
+.footerMain {
+  .trigger {
+    opacity: 1;
+  }
+
+}
+.footerBottom {
+  margin-top: 64px;
+  .footerCredits {
+    opacity: 1;
+  }
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    margin-top: 100px;
+  }
+
+}
+
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
@@ -127,42 +250,4 @@ a.secondary {
 }
 
 @media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
-  }
-
-  .main {
-    align-items: center;
-  }
-
-  .main ol {
-    text-align: center;
-  }
-
-  .ctas {
-    flex-direction: column;
-  }
-
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
-  }
-
-  a.secondary {
-    min-width: auto;
-  }
-
-  .footer {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
 }
