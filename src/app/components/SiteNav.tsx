@@ -7,7 +7,7 @@ import styles from '../page.module.css'
 import useViewportSize from '../lib/viewportSize';
 
 function SiteNav() {
-    const { width, height } = useViewportSize();
+    const { width } = useViewportSize();
   
     // You can conditionally render based on viewport size
     const isMobile = width !== undefined && width < 768;
@@ -24,7 +24,7 @@ function SiteNav() {
         <Link href="#about" className="btn btn-small">
           About
         </Link>
-        <a href="/">
+        <a href="https://github.com/ReiSikk" target='_blank' rel="noopener noreferrer">
           <FaGithub size={36} className="img-responsive" />
         </a>
       </li>
