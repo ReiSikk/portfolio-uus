@@ -16,57 +16,100 @@
 /*
     Header section
     ========================================================================== */
-    .siteHeader {
-      position: relative;
-      background: var(--dark);
-      z-index: 1;
-      padding-bottom: 64px;
+.siteHeader {
+  position: relative;
+  background: var(--dark);
+  z-index: 1;
+  padding-bottom: 64px;
 
-      @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-        padding-bottom: 8.88vw;
-      }
-    }
-    .hero {
-      margin-top: 48px;
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    padding-bottom: 8.88vw;
+  }
+}
+.hero {
+  margin-top: 48px;
 
-      @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-        margin-top: 3.333vw;    
-      }
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    margin-top: 3.333vw;
+  }
+}
+.heroTitle {
+  line-height: 1.1;
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    max-width: 49.51vw;
+  }
+}
+.heroBtn {
+  margin-top: 48px;
 
-    }
-    .heroTitle {
-      line-height: 1.1;
-      @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-        max-width: 49.51vw;
-      }
-    }
-    .heroBtn {
-      margin-top: 48px;
+  @media only screen and (max-width: 465px) {
+    width: 100%;
+  }
 
-      @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-        margin-top: 4.444vw;
-      }
-    }
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    margin-top: 4.444vw;
+  }
+}
+
+/* Hero button with hover text effect */
+.heroBtn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  &:hover {
+    color: var(--cream);
+    background: var(--dark);
+    border: 1px solid var(--cream);
+  }
+}
+
+/* Style both text spans in heroBtn */
+.heroBtn .mainTxt,
+.heroBtn .hoverTxt {
+  display: block;
+  transition: transform 0.3s ease;
+}
+.heroBtn .mainTxt {
+  display: block;
+  opacity: 1;
+}
+
+.heroBtn .hoverTxt {
+  display: block;
+  position: absolute;
+  left: 0;        /* Position at the left edge of the button */
+  width: 100%;    /* Take full width of the button */
+  text-align: center; /* Center the text horizontally */
+  transform: translateY(200%); /* Keep the vertical offset */
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+
 
 /*
    Navigation bar
    ========================================================================== */
-   .siteNav {
-    padding-block: 32px;
-  }
-  .siteNavList {
-    align-items: center;
-    justify-content: space-between;
-  }
-  .siteNavList > li:last-of-type {
-    align-items: center;
-    gap: clamp(16px, 2.4vw, 24px);
-  }
-  .siteNavList > li:last-of-type > svg {
-    stroke: var(--cream);
-    height: 24px;
-    width: 24px;
-  }
+.siteNav {
+  padding-block: 32px;
+}
+.siteNavList {
+  align-items: center;
+  justify-content: space-between;
+}
+.siteNavList > li:last-of-type {
+  align-items: center;
+  gap: clamp(16px, 2.4vw, 24px);
+}
+.siteNavList > li:last-of-type > svg {
+  stroke: var(--cream);
+  height: 24px;
+  width: 24px;
+}
 
 /*
    Main content section
@@ -78,7 +121,6 @@
   background: var(--dark);
 }
 .projects {
-
 }
 .projectsTitle {
   margin-bottom: 16px;
@@ -87,10 +129,10 @@
   }
 }
 .projectsList {
-
 }
 .projectsList__item {
-  margin-bottom: 16px;
+  position: relative;
+  transition: color 0.3s ease-out;
 }
 
 .trigger {
@@ -98,25 +140,18 @@
   justify-content: space-between;
   border-bottom: 1px solid var(--cream);
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, padding 0.4s ease;
   padding-block: clamp(16px, 2vw, 24px);
-
-  &:hover {
-    opacity: 1;
-  }
-  &:not(:hover) {
-    opacity: 0.7;
-  }
 }
 
 .triggerIcon {
-  stroke: var(--accent);
-  transition: transform 0.3s ease;
+  stroke: var(--cream);
+  transition: transform 0.3s ease, color 0.3s ease-out;
   height: 48px;
   width: 48px;
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-      height: 96px;
-      width: 96px;
+    height: 96px;
+    width: 96px;
   }
 }
 
@@ -150,16 +185,15 @@
 .servicesList {
   gap: 16px 24px;
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-      flex-direction: row;
+    flex-direction: row;
   }
 }
 .servicesList__item {
   padding: clamp(24px, 6vw, 56px);
-  background: #0B0B0B;
+  background: #0b0b0b;
 }
 .serviceTitle {
   margin-bottom: clamp(16px, 2vw, 24px);
-
 }
 .serviceText {
   font-size: 1.4rem;
@@ -178,33 +212,28 @@
 .aboutTitle {
   margin-bottom: 48px;
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-      line-height: 0.9;
-      margin-bottom: 6.9444vw;
+    line-height: 0.9;
+    margin-bottom: 6.9444vw;
   }
-
 }
 .aboutText {
-
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
     max-width: 49.51vw;
   }
 }
 
-
 /*
    Footer
    ========================================================================== */
 .footer {
-  background: #0B0B0B;
+  background: #0b0b0b;
   padding-block: 64px;
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
     padding-block: 8.333vw;
   }
-
 }
 
 .footerWrap {
-
 }
 
 .footerTitle {
@@ -217,7 +246,6 @@
   .trigger {
     opacity: 1;
   }
-
 }
 .footerBottom {
   margin-top: 64px;
@@ -227,27 +255,54 @@
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
     margin-top: 100px;
   }
-
 }
-
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+  .projectsList__item a, .projectsList__item div:first-child {
+    z-index: 1;
+    transition: color 0.3s ease-out;
+  }
+  
+  .projectsList__item a::before, .projectsList__item div:first-child::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--cream);
+    z-index: -1;
+    transform: scaleY(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-out;
+  }
+  
+  /* Hover state: background transitions to center and disappears */
+  .projectsList__item a:hover, .projectsList__item div:first-child:hover {
+    color: var(--dark); /* Text color when background is visible */
+  }
+  
+  .projectsList__item a:hover::before, .projectsList__item div:first-child:hover::before {
+    transform: scaleY(1); /* Scale to full height */
+    background-color: var(--cream); /* Becomes transparent */
+  }
+  
+  /* Icon styling */
+  .projectsList__item a:hover .triggerIcon, .projectsList__item div:first-child:hover .triggerIcon {
+    stroke: var(--dark);
   }
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
+  /* Hero btn hovers */
+  /* On hover, move the main text up and bring the hover text in */
+.heroBtn:hover .mainTxt {
+  transform: translateY(-200%);
+  opacity: 0;
 }
 
-@media (max-width: 600px) {
+.heroBtn:hover .hoverTxt {
+  transform: translateY(0); /* Remove translateX since we're using width:100% and text-align */
+  opacity: 1;
+}
+
 }
