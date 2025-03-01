@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
-import { Project } from "./types/sanity";
+import { Project, ServiceItem, FooterLink, PageContent } from "./types/sanity";
 import sanityClient from "./lib/sanity";
 import { ArrowUpRight } from "lucide-react";
 import ProjectItem from "./components/ProjectItem";
@@ -31,7 +31,7 @@ export default function Home() {
 
   // Use useState for data
   const [projects, setProjects] = useState<Project[]>([]);
-  const [pageContent, setPageContent] = useState<any>(null);
+  const [pageContent, setPageContent] = useState<PageContent | null>(null);
 
   // Fetch data on component mount
   useEffect(() => {
@@ -223,7 +223,7 @@ export default function Home() {
         <section className={styles.services} ref={servicesRef}>
           <h3 className={`${styles.servicesTitle} h1-large`}>{pageContent.servicesTitle}</h3>
           <ul className={`${styles.servicesList} fp-col`}>
-            {pageContent.servicesList.map((service: any) => (
+            {pageContent.servicesList.map((service: ServiceItem) => (
               <li key={service?.serviceTitle} className={`${styles.servicesList__item} fp-col`}>
                 <h3 className={`${styles.serviceTitle} h3`}>{service.serviceTitle}</h3>
                 <p className={styles.serviceText}>{service.serviceDescription}</p>
@@ -244,7 +244,7 @@ export default function Home() {
         <div className={`${styles.footerWrap} container`}>
           <h5 className={`${styles.footerTitle} h3`}>{pageContent.footerTitle}</h5>
           <ul className={styles.footerMain}>
-            {pageContent.footerLinks.map((link: any) => (
+            {pageContent.footerLinks.map((link: FooterLink) => (
               <li key={link.text} className={styles.projectsList__item}>
                 <a href={link.url} className="footerLink" target="_blank" rel="noopener noreferrer">
                   <div className={`${styles.trigger} footerLink fp`}>
