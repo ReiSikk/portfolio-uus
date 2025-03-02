@@ -14,13 +14,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(useGSAP, ScrollTrigger); // register the hook to avoid React version discrepancies
 
 export default function Home() {
-  // const query = `*[_type == "project"]`;
-  // const projects: Project[] = await sanityClient.fetch(query);
-
-  // // Query page copy from Sanity
-  // const pageQuery = `*[_type == "pageContent"][0]`;
-  // const pageContent = await sanityClient.fetch(pageQuery);
-
   // Create refs for the šections that need animation
   const container = useRef(null);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -28,12 +21,13 @@ export default function Home() {
   const servicesRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const aboutTextRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLElement>(null);
 
   // Use useState for data
   const [projects, setProjects] = useState<Project[]>([]);
   const [pageContent, setPageContent] = useState<PageContent | null>(null);
 
-  // Fetch data on component mount
+  //***** Fetch data on component mount *****
   useEffect(() => {
     async function fetchData() {
       const projectQuery = `*[_type == "project"]`;
@@ -49,23 +43,21 @@ export default function Home() {
     fetchData();
   }, []);
 
-  // GSAP animations
+  //***** GSAP animations *****/
   useGSAP(
     () => {
       // Only run animations if pageContent exists
       if (pageContent) {
         // Hero content animation - immediate
         if (heroRef.current) {
-          const heroElements = heroRef.current.children;
-          console.log(heroElements);
+          const heroElements = heroRef.current;
           gsap.fromTo(
             heroElements,
-            { y: 30, autoAlpha: 0 },
+            { y: 20, autoAlpha: 0 },
             {
               y: 0,
               autoAlpha: 1,
               duration: 0.5,
-              stagger: 0.2,
               ease: "power2.out",
               clearProps: "all", // Clean up after animation
             }
@@ -85,7 +77,7 @@ export default function Home() {
                 ease: "power2.out",
                 scrollTrigger: {
                   trigger: ref.current,
-                  start: "top 80%", // Trigger when top of section reaches 75% down viewport
+                  start: "top 80%", // Trigger when top of section reaches 80% down viewport
                   toggleActions: "play none none none", // Play animation once when scrolled into view
                   markers: false, // Set to true for debugging
                 },
@@ -122,7 +114,7 @@ export default function Home() {
           if (projectItems.length) {
             gsap.fromTo(
               projectItems,
-              { y: 30, autoAlpha: 0 },
+              { y: 20, autoAlpha: 0 },
               {
                 y: 0,
                 autoAlpha: 1,
@@ -147,7 +139,7 @@ export default function Home() {
           if (servicesTitle) {
             gsap.fromTo(
               servicesTitle,
-              { y: 30, autoAlpha: 0 },
+              { y: 20, autoAlpha: 0 },
               {
                 y: 0,
                 autoAlpha: 1,
@@ -168,7 +160,7 @@ export default function Home() {
           if (serviceItems.length) {
             gsap.fromTo(
               serviceItems,
-              { y: 30, autoAlpha: 0 },
+              { y: 20, autoAlpha: 0 },
               {
                 y: 0,
                 autoAlpha: 1,
@@ -183,6 +175,99 @@ export default function Home() {
                 },
               }
             );
+          }
+        }
+
+        // Footer animations based on main element
+        if (footerRef.current) {
+          // Get a reference to the main element
+          const mainElement = document.querySelector(`.${styles.main}`);
+          
+          if (mainElement) {
+            // Create a timeline for footer animations
+            const footerTimeline = gsap.timeline({
+              scrollTrigger: {
+                trigger: mainElement, // Use main element as trigger
+                start: "bottom 80%", // When bottom of main element is 80% up the viewport
+                toggleActions: "play none none none",
+                markers: false, // Set to true for debugging
+                once: true, // Only trigger once
+              }
+            });
+            
+            // 1. First animate the footer title
+            const footerTitle = footerRef.current.querySelector(`.${styles.footerTitle}`);
+            if (footerTitle) {
+              footerTimeline.fromTo(
+                footerTitle,
+                { y: 20, autoAlpha: 0 },
+                {
+                  y: 0,
+                  autoAlpha: 0.6,
+                  duration: 0.6,
+                  ease: "power2.out",
+                }
+              );
+            }
+        
+            // 2. Create specific targets in the proper order
+            
+            // Footer bottom elements first
+            const copyright = footerRef.current.querySelector(`.copyright`);
+            const footerCredits = footerRef.current.querySelector(`.${styles.footerCredits}`);
+            
+            // The footer links in reverse order (we need to get them individually)
+            const footerLinks = Array.from(footerRef.current.querySelectorAll(`.${styles.footerMain} > li`));
+            const reversedLinks = [...footerLinks].reverse();
+            
+            // Animation order: copyright, footerCredits, and all footerLinks from last to first
+            
+            // First animate copyright
+            if (copyright) {
+              footerTimeline.fromTo(
+                copyright,
+                { y: 20, autoAlpha: 0 },
+                {
+                  y: 0,
+                  autoAlpha: 1,
+                  duration: 0.6,
+                  ease: "power2.out",
+                },
+                "-=0.3" // Start slightly before previous animation ends
+              );
+            }
+            
+            // Then animate footerCredits
+            if (footerCredits) {
+              footerTimeline.fromTo(
+                footerCredits,
+                { y: 20, autoAlpha: 0 },
+                {
+                  y: 0,
+                  autoAlpha: 1,
+                  duration: 0.6,
+                  ease: "power2.out",
+                },
+                "-=0.3" // Start slightly before previous animation ends
+              );
+            }
+            
+            // Then animate each footer link, one by one (they're already in reverse order)
+            if (reversedLinks.length) {
+              reversedLinks.forEach((link, index) => {
+                footerTimeline.fromTo(
+                  link,
+                  { y: 20, autoAlpha: 0 },
+                  {
+                    y: 0,
+                    autoAlpha: 1,
+                    duration: 0.6,
+                    ease: "power2.out",
+                  },
+                  index === 0 ? "-=0.3" : "-=0.2" // First one overlaps more with previous
+                );
+              });
+            }
           }
         }
       }
@@ -203,7 +288,7 @@ export default function Home() {
     <div className={`${styles.page}`} ref={container}>
       <header className={`${styles.siteHeader} container`}>
         <SiteNav />
-        <div className={styles.hero}>
+        <div className={styles.hero} ref={heroRef}>
           <h1 className={`${styles.heroTitle} h2`}>{pageContent.heroTitle}</h1>
           <a href="mailto:sikkrei@gmail.com" className={`${styles.heroBtn} btn btn-large`}>
             <span className={styles.mainTxt}>{pageContent.heroBtn}</span>
@@ -222,7 +307,7 @@ export default function Home() {
         </section>
         <section className={styles.services} ref={servicesRef}>
           <h3 className={`${styles.servicesTitle} h1-large`}>{pageContent.servicesTitle}</h3>
-          <ul className={`${styles.servicesList} fp-col`}>
+          <ul className={`${styles.servicesList}`}>
             {pageContent.servicesList.map((service: ServiceItem) => (
               <li key={service?.serviceTitle} className={`${styles.servicesList__item} fp-col`}>
                 <h3 className={`${styles.serviceTitle} h3`}>{service.serviceTitle}</h3>
@@ -240,7 +325,7 @@ export default function Home() {
           </p>
         </section>
       </main>
-      <footer className={styles.footer} id="footer">
+      <footer className={styles.footer} ref={footerRef}>
         <div className={`${styles.footerWrap} container`}>
           <h5 className={`${styles.footerTitle} h3`}>{pageContent.footerTitle}</h5>
           <ul className={styles.footerMain}>
@@ -263,8 +348,8 @@ export default function Home() {
               </a>
             </li>
           </ul>
-          <div className={styles.footerBottom}>
-            <span className={`${styles.footerCredits} txt-up h5-med`}>Development & design by Rei Sikk</span>
+          <div className={styles.footerBottom} id="footerBottom">
+            <span className="txt-up h5-med footerCredits">Development & design by Rei Sikk</span>
             <p className="h5-med copyright">&copy; {new Date().getFullYear()} All rights reserved</p>
           </div>
         </div>

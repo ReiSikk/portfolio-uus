@@ -1,7 +1,6 @@
 "use client";
 
 import React from 'react'
-import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
 import styles from '../page.module.css'
 import useViewportSize from '../lib/viewportSize';
@@ -21,9 +20,6 @@ function SiteNav() {
         </span>
       </li>
       <li className="fp">
-        <Link href="#about" className="btn btn-small">
-          About
-        </Link>
         <a href="https://github.com/ReiSikk" target='_blank' rel="noopener noreferrer">
           <FaGithub size={36} className="img-responsive" />
         </a>
