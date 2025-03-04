@@ -163,7 +163,7 @@
 }
 
 .trigger.active .triggerIcon {
-  transform: rotate(90deg);
+  transform: rotate(45deg);
 }
 /* Services section in Main */
 .services {
@@ -257,39 +257,52 @@
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
-  .projectsList__item a, .projectsList__item div:first-child {
-    z-index: 1;
-    transition: color 0.3s ease-out;
-  }
-  
-  .projectsList__item a::before, .projectsList__item div:first-child::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--cream);
-    z-index: -1;
-    transform: scaleY(0);
-    transform-origin: center;
-    transition: transform 0.3s ease-out;
-  }
-  
-  /* Hover state: background transitions to center and disappears */
-  .projectsList__item a:hover, .projectsList__item div:first-child:hover {
-    color: var(--dark); /* Text color when background is visible */
-  }
-  
-  .projectsList__item a:hover::before, .projectsList__item div:first-child:hover::before {
-    transform: scaleY(1); /* Scale to full height */
-    background-color: var(--cream); /* Becomes transparent */
-  }
-  
-  /* Icon styling */
-  .projectsList__item a:hover .triggerIcon, .projectsList__item div:first-child:hover .triggerIcon {
-    stroke: var(--dark);
-  }
+/* ===== PROJECT LINKS HOVER STYLES ===== */
+/* Base styles for project list items */
+.projects .projectsList__item a, 
+.projects .projectsList__item div:first-child {
+  color: var(--cream);
+  opacity: 1;
+  padding-inline: 0;
+  transition: padding 0.3s ease, opacity 0.3s ease;
+}
+
+/* When hovering any project in projects section, reduce opacity of all projects */
+.projects .projectsList:hover .projectsList__item a,
+.projects .projectsList:hover .projectsList__item div:first-child {
+  opacity: 0.5;
+}
+
+/* But restore full opacity and add padding for the specific project being hovered */
+.projects .projectsList .projectsList__item a:hover, 
+.projects .projectsList .projectsList__item div:first-child:hover {
+  color: var(--cream);
+  opacity: 1;
+  padding-inline: 0.34722vw;
+}
+
+/* ===== FOOTER LINKS HOVER STYLES ===== */
+/* Base styles for footer links */
+.footer .footerMain .projectsList__item a,
+.footer .footerMain .projectsList__item .trigger {
+  color: var(--cream);
+  opacity: 1;
+  transition: transform 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+}
+
+/* When hovering the footer list container, reduce opacity of all items */
+.footer .footerMain:hover .projectsList__item a,
+.footer .footerMain:hover .projectsList__item .trigger {
+  opacity: 0.7;
+}
+
+/* Restore opacity and add transform effect for the specific one being hovered */
+.footer .footerMain .projectsList__item a:hover,
+.footer .footerMain .projectsList__item .trigger:hover {
+  opacity: 1;
+  padding-inline: 0.34722vw;
+}
+
 
   /* Hero btn hovers */
   /* On hover, move the main text up and bring the hover text in */
@@ -299,7 +312,7 @@
 }
 
 .heroBtn:hover .hoverTxt {
-  transform: translateY(0); /* Remove translateX since we're using width:100% and text-align */
+  transform: translateY(0);
   opacity: 1;
 }
 

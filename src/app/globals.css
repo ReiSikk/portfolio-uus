@@ -150,6 +150,12 @@ Layout
   height: 100svh;
 }
 
+.col-m-none {
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
+}
+
 /*
    Media helpers
    ========================================================================== */
@@ -274,6 +280,9 @@ Layout
     @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
       margin-top: 0.6944vw;
     }
+   }
+   .monospace {
+      font-family: monospace;
    }
 
 

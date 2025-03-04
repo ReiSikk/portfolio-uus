@@ -2,13 +2,26 @@ export interface Project {
     _id: string;
     title: string;
     description: string;
-    link: string;
-    image: {
+    heroImage: {
       asset: {
         _ref: string;
         _type: "reference";
       };
     };
+    link: string;
+    githubLink: string;
+    images: {
+      asset: {
+        _ref: string;
+        _type: "reference";
+      };
+      hotspot?: {
+        x: number;
+        y: number;
+        height: number;
+        width: number;
+      };
+    }[]; 
     roles: string[];
   }
   

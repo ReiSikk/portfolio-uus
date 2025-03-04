@@ -14,7 +14,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(useGSAP, ScrollTrigger); // register the hook to avoid React version discrepancies
 
 export default function Home() {
-  // Create refs for the šections that need animation
+  // Refs for the sections that need animation
   const container = useRef(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
@@ -349,8 +349,8 @@ export default function Home() {
             </li>
           </ul>
           <div className={styles.footerBottom} id="footerBottom">
-            <span className="txt-up h5-med footerCredits">Development & design by Rei Sikk</span>
-            <p className="h5-med copyright">&copy; {new Date().getFullYear()} All rights reserved</p>
+            <p className="txt-up h5-med footerCredits monospace">Development & design by Rei Sikk</p>
+            <p className="h5-med copyright monospace">&copy; {new Date().getFullYear()} All rights reserved</p>
           </div>
         </div>
       </footer>
