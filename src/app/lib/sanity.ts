@@ -1,6 +1,8 @@
 // lib/sanityClient.ts
 import { createClient } from '@sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+
 
 const sanityClient = createClient({
   projectId: 'mpm26m66',
@@ -15,7 +17,7 @@ export default sanityClient;
 // Get a pre-configured url-builder from your sanity client
 const builder = imageUrlBuilder(sanityClient);
 
-// Function to generate image URLs
-export function urlForImage(source: any) {
+// Function to generate image URLs with proper typing
+export function urlForImage(source: SanityImageSource) {
   return builder.image(source);
 }

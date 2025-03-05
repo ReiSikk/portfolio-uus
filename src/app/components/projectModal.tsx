@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { X } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Project } from '../types/sanity'
 import styles from './project-modal.module.css'
 import { urlForImage } from '../lib/sanity'
