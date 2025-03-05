@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { Project } from '../types/sanity'
 import styles from './project-modal.module.css'
 import { urlForImage } from '../lib/sanity'
-import { ArrowDown, ArrowDownToDot } from 'lucide-react'
+import { ArrowDown } from 'lucide-react'
 
 interface ProjectModalProps {
   isOpen: boolean
