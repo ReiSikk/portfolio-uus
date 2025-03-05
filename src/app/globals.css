@@ -161,8 +161,9 @@ Layout
    ========================================================================== */
 .img-responsive {
   max-width: 100%;
-  height: auto;
+  position: relative;
   display: block;
+  height: auto;
 }
 .img-cover {
   object-fit: cover;

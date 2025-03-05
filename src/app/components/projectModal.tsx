@@ -80,17 +80,33 @@ export default function ProjectModal({ isOpen, project, updateModalStates }: Pro
         
         <div className={`${styles.projectModal__inner} fp`}>
             <div className={`${styles.projectModal__body} fp-col`}>
-                <span className={`${styles.projectModal__title} h1`}>
-                    {project.title}
-                </span>
 
               {project.description && project.roles && (
                   <div className={`${styles.projectModal__main} fp`}>
                   {project.description && (
-                      <p className={styles.projectModal__description}>{project.description}</p>
+                    <div className='fp-col'>
+                      <span className={`${styles.projectModal__title} h1`}>
+                        {project.title}
+                      </span>
+                      <p className={styles.projectModal__description}>
+                        {project.description}
+                      </p>
+                    </div>
                   )}
   
-                  {project.roles && (
+                  {project.roles && !project.githubLink && (
+                    <div className={`${styles.rolesLinks} fp-col`}>
+                      <div className={styles.projectModal__links}>            
+                        <a 
+                          href={project.githubLink}
+                          className={`${styles.projectModal__link} ${styles.projectModal__linkSecondary} txt-up btn btn-primary`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <span className={styles.mainTxt}>Github Repo</span>
+                          <span className={styles.hoverTxt}>Github Repo</span>
+                        </a>
+                      </div>
                       <div className={`${styles.projectModal__roles} fp-col`}>
                         <span className={`${styles.projectModal__rolesTitle} h5-med`}>Roles</span>
                       {project.roles.map((role, index) => (
@@ -102,6 +118,7 @@ export default function ProjectModal({ isOpen, project, updateModalStates }: Pro
                           </span>
                       ))}
                       </div>
+                    </div>
                   )}
                   </div>  
               )}
@@ -114,25 +131,12 @@ export default function ProjectModal({ isOpen, project, updateModalStates }: Pro
                             src={urlForImage(image).url()}
                             alt={`Project image ${index + 1}`}
                             fill
-                            className={styles.projectModal__image}
+                            className={`${styles.projectModal__image} img-responsive`}
                         />
                         </div>
                     ))}
                     </div>
                 )}
-                
-                <div className={styles.projectModal__links}>            
-                    {project.githubLink && (
-                    <a
-                        href={project.githubLink}
-                        className={`${styles.projectModal__link} ${styles.projectModal__linkSecondary}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        GitHub Repository
-                    </a>
-                    )}
-                </div>
             </div>
           
 
