@@ -1,11 +1,11 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { X } from 'lucide-react'
 import Image from 'next/image'
 import { Project } from '../types/sanity'
 import styles from './project-modal.module.css'
 import { urlForImage } from '../lib/sanity'
+import { ArrowDown, ArrowDownToDot } from 'lucide-react'
 
 interface ProjectModalProps {
   isOpen: boolean
@@ -54,14 +54,13 @@ export default function ProjectModal({ isOpen, project, updateModalStates }: Pro
         className={styles.projectModal__content}
         onClick={(e) => e.stopPropagation()}
       >
-        <div 
+        <button 
           onClick={updateModalStates}
           className={styles.projectModal__closeBtn}
           aria-label="Close modal"
         >
-            <span className={`${styles.closeTxt} txt-up h4-med`}>Close</span>
-          <X size={24} className={styles.closeIcon}/>
-        </div>
+            <span className={`${styles.closeTxt} txt-up h4-med`}>Close modal</span>
+        </button>
         
         <div className={styles.projectModal__hero}>
           <Image 
@@ -71,6 +70,12 @@ export default function ProjectModal({ isOpen, project, updateModalStates }: Pro
             className={`${styles.projectModal__heroImg} img-cover`}
             priority
           />
+           <div className={styles.projectModal__heroOverlay}>
+            <div className={styles.projectModal__scrollHint}>
+              <span className="txt-up h5-med">Scroll Down</span>
+              <ArrowDown size={24} strokeWidth={1}/>
+            </div>
+          </div>
         </div>
         
         <div className={`${styles.projectModal__inner} fp`}>
