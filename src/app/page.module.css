@@ -74,15 +74,13 @@
 .heroBtn .hoverTxt {
   display: block;
   position: absolute;
-  left: 0;        /* Position at the left edge of the button */
-  width: 100%;    /* Take full width of the button */
+  left: 0; /* Position at the left edge of the button */
+  width: 100%; /* Take full width of the button */
   text-align: center; /* Center the text horizontally */
   transform: translateY(200%); /* Keep the vertical offset */
   opacity: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
-
-
 
 /*
    Navigation bar
@@ -179,10 +177,9 @@
   gap: 16px 24px;
   display: grid;
   grid-template-columns: 1fr;
-  
+
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
     grid-template-columns: 1fr 1fr;
-
   }
 }
 .servicesList__item {
@@ -196,6 +193,34 @@
   font-size: 1.4rem;
   line-height: 1.6;
   max-width: 62ch;
+}
+.techStack {
+  display: grid;
+  gap: 2px;
+  transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+  overflow: hidden;
+  grid-template-columns: repeat(2, 1fr);
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    gap: 4px;
+  }
+  
+}
+
+.techStack__item:hover {
+  background: var(--cream);
+  color: var(--dark);
+}
+
+.techStack__item {
+  position: relative;
+  background: var(--cream);
+  color: var(--dark);
+  border-radius: 4px;
+  border: 1px solid var(--dark);
+  padding: 1rem;
+  flex: 1;
+  z-index: 1;
+  transition: color 0.3s ease;
 }
 /* About section in Main */
 .about {
@@ -257,63 +282,61 @@
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
-/* ===== PROJECT LINKS HOVER STYLES ===== */
-/* Base styles for project list items */
-.projects .projectsList__item a, 
-.projects .projectsList__item div:first-child {
-  color: var(--cream);
-  opacity: 1;
-  padding-inline: 0;
-  transition: padding 0.3s ease, opacity 0.3s ease;
-}
+  /* ===== PROJECT LINKS HOVER STYLES ===== */
+  /* Base styles for project list items */
+  .projects .projectsList__item a,
+  .projects .projectsList__item div:first-child {
+    color: var(--cream);
+    opacity: 1;
+    padding-inline: 0;
+    transition: padding 0.3s ease, opacity 0.3s ease;
+  }
 
-/* When hovering any project in projects section, reduce opacity of all projects */
-.projects .projectsList:hover .projectsList__item a,
-.projects .projectsList:hover .projectsList__item div:first-child {
-  opacity: 0.5;
-}
+  /* When hovering any project in projects section, reduce opacity of all projects */
+  .projects .projectsList:hover .projectsList__item a,
+  .projects .projectsList:hover .projectsList__item div:first-child {
+    opacity: 0.5;
+  }
 
-/* But restore full opacity and add padding for the specific project being hovered */
-.projects .projectsList .projectsList__item a:hover, 
-.projects .projectsList .projectsList__item div:first-child:hover {
-  color: var(--cream);
-  opacity: 1;
-  padding-inline: 0.34722vw;
-}
+  /* But restore full opacity and add padding for the specific project being hovered */
+  .projects .projectsList .projectsList__item a:hover,
+  .projects .projectsList .projectsList__item div:first-child:hover {
+    color: var(--cream);
+    opacity: 1;
+    padding-inline: 0.34722vw;
+  }
 
-/* ===== FOOTER LINKS HOVER STYLES ===== */
-/* Base styles for footer links */
-.footer .footerMain .projectsList__item a,
-.footer .footerMain .projectsList__item .trigger {
-  color: var(--cream);
-  opacity: 1;
-  transition: transform 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
-}
+  /* ===== FOOTER LINKS HOVER STYLES ===== */
+  /* Base styles for footer links */
+  .footer .footerMain .projectsList__item a,
+  .footer .footerMain .projectsList__item .trigger {
+    color: var(--cream);
+    opacity: 1;
+    transition: transform 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+  }
 
-/* When hovering the footer list container, reduce opacity of all items */
-.footer .footerMain:hover .projectsList__item a,
-.footer .footerMain:hover .projectsList__item .trigger {
-  opacity: 0.7;
-}
+  /* When hovering the footer list container, reduce opacity of all items */
+  .footer .footerMain:hover .projectsList__item a,
+  .footer .footerMain:hover .projectsList__item .trigger {
+    opacity: 0.7;
+  }
 
-/* Restore opacity and add transform effect for the specific one being hovered */
-.footer .footerMain .projectsList__item a:hover,
-.footer .footerMain .projectsList__item .trigger:hover {
-  opacity: 1;
-  padding-inline: 0.34722vw;
-}
-
+  /* Restore opacity and add transform effect for the specific one being hovered */
+  .footer .footerMain .projectsList__item a:hover,
+  .footer .footerMain .projectsList__item .trigger:hover {
+    opacity: 1;
+    padding-inline: 0.34722vw;
+  }
 
   /* Hero btn hovers */
   /* On hover, move the main text up and bring the hover text in */
-.heroBtn:hover .mainTxt {
-  transform: translateY(-200%);
-  opacity: 0;
-}
+  .heroBtn:hover .mainTxt {
+    transform: translateY(-200%);
+    opacity: 0;
+  }
 
-.heroBtn:hover .hoverTxt {
-  transform: translateY(0);
-  opacity: 1;
-}
-
+  .heroBtn:hover .hoverTxt {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

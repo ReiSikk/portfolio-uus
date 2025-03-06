@@ -38,6 +38,19 @@ export interface Project {
     _key?: string;
   }
 
+  export interface StackItem {
+    techTitle: string;
+    techDescription: string;
+    techLogo: {
+      asset: {
+        _ref: string;
+        _type: "reference";
+      };
+    };
+    randomHue: number;
+    _key?: string;
+  }
+
   export interface PageContent {
     heroTitle: string;
     heroBtn: string;
@@ -48,6 +61,7 @@ export interface Project {
     aboutText: string;
     footerTitle: string;
     footerLinks: FooterLink[];
+    techStackList: StackItem[];
     _createdAt?: string;
     _id?: string;
     _rev?: string;

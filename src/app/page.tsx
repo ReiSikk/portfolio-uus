@@ -1,15 +1,17 @@
 "use client";
 
 import styles from "./page.module.css";
-import { Project, ServiceItem, FooterLink, PageContent } from "./types/sanity";
+import { Project, ServiceItem, FooterLink, PageContent, StackItem } from "./types/sanity";
 import sanityClient from "./lib/sanity";
 import { ArrowUpRight } from "lucide-react";
 import ProjectItem from "./components/ProjectItem";
 import SiteNav from "./components/SiteNav";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { urlForImage } from './lib/sanity'
+import Image from 'next/image'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger); // register the hook to avoid React version discrepancies
 
@@ -275,6 +277,8 @@ export default function Home() {
     { scope: container, dependencies: [pageContent] }
   );
 
+
+  
   // If data is still loading, show a simple loading state
   if (!pageContent) {
     return (
@@ -308,6 +312,31 @@ export default function Home() {
         <section className={styles.services} ref={servicesRef}>
           <h3 className={`${styles.servicesTitle} h1-large`}>{pageContent.servicesTitle}</h3>
           <ul className={`${styles.servicesList}`}>
+          <li 
+          className={`${styles.servicesList__item} ${styles.techStack} fp`}
+          key={"techStackList"}
+          >
+            {pageContent.techStackList.map((technology: StackItem) => (
+              <div 
+              key={technology.techTitle} 
+              className={`${styles.techStack__item} monospace txt-up`}
+              style={{ '--hue': `${technology.randomHue}deg` } as React.CSSProperties}
+              >
+                <span className={styles.techItem__title}>{technology.techTitle}</span>
+                {
+                  technology.techLogo?.asset._ref && (
+                    <Image
+                      src={urlForImage(technology.techLogo).url()}
+                      alt={technology.techTitle}
+                      height={64}
+                      width={64}
+                      className={`${styles.techLogo} img-responsive`}
+                    />
+                  )
+                }
+              </div>
+            ))}
+          </li>
             {pageContent.servicesList.map((service: ServiceItem) => (
               <li key={service?.serviceTitle} className={`${styles.servicesList__item} fp-col`}>
                 <h3 className={`${styles.serviceTitle} h3`}>{service.serviceTitle}</h3>
