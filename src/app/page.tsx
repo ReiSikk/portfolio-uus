@@ -6,7 +6,7 @@ import sanityClient from "./lib/sanity";
 import { ArrowUpRight } from "lucide-react";
 import ProjectItem from "./components/ProjectItem";
 import SiteNav from "./components/SiteNav";
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
