@@ -6,6 +6,8 @@ import { Project } from '../types/sanity'
 import styles from './project-modal.module.css'
 import { urlForImage } from '../lib/sanity'
 import { ArrowDown } from 'lucide-react'
+import {PortableText} from '@portabletext/react'
+
 
 interface ProjectModalProps {
   isOpen: boolean
@@ -88,9 +90,11 @@ export default function ProjectModal({ isOpen, project, updateModalStates }: Pro
                       <span className={`${styles.projectModal__title} h1`}>
                         {project.title}
                       </span>
-                      <p className={styles.projectModal__description}>
-                        {project.description}
-                      </p>
+                      <div className={styles.projectModal__description}>
+                        <PortableText
+                            value={project.description}
+                          />
+                      </div>
                     </div>
                   )}
   

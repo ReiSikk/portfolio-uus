@@ -2,7 +2,7 @@
   --cream: #ffffee;
   --dark: #111111;
   /* --accent: #f4afab; */
-  --accent: #BBEAF2;
+  --accent: #bbeaf2;
 
   /*
    Headings
@@ -102,6 +102,7 @@ ul {
 footer {
   z-index: 0;
   position: sticky;
+  display: flex;
   inset: 0;
 }
 
@@ -198,52 +199,56 @@ Layout
 /*
     Typography
    ========================================================================== */
-   .h1-jumbo {
-    font-size: var(--h1-jumbo);
-    letter-spacing: var(--h1-jumbo-lspacing);
-    line-height: var(--h1-jumbo-lh);
-    font-weight: 500;
-   }
-   h1, .h1 {
-    font-size: var(--h1-48);
-    font-weight: 500;
-   }
-   .h1-large {
-    font-size: var(--h1-large);
-    font-weight: 500;
-    letter-spacing: -1.5px;
-   }
-   h2, .h2 {
-    font-size: var(--h2-32);
-    font-weight: 500;
-   }
-   h3, .h3 {
-    font-size: var(--h3-24);
-    font-weight: 500;
-   }
-   h4, .h4-light {
-    font-size: var(--h4-light);
-    font-weight: 400;
-    line-height: var(--h4-lh);
-   }
-   .h4-med {
-    font-size: var(--h4-med);
-    font-weight: var(--h4-med-fw);
-    letter-spacing: var(--h4-med-lspacing);
-   }
-   h5, .h5-med {
-    font-size: var(--h5-med);
-    letter-spacing: var(--h5-med-lspacing);
-    opacity: 0.6;
-   }
+.h1-jumbo {
+  font-size: var(--h1-jumbo);
+  letter-spacing: var(--h1-jumbo-lspacing);
+  line-height: var(--h1-jumbo-lh);
+  font-weight: 500;
+}
+h1,
+.h1 {
+  font-size: var(--h1-48);
+  font-weight: 500;
+}
+.h1-large {
+  font-size: var(--h1-large);
+  font-weight: 500;
+  letter-spacing: -1.5px;
+}
+h2,
+.h2 {
+  font-size: var(--h2-32);
+  font-weight: 500;
+}
+h3,
+.h3 {
+  font-size: var(--h3-24);
+  font-weight: 500;
+}
+h4,
+.h4-light {
+  font-size: var(--h4-light);
+  font-weight: 400;
+  line-height: var(--h4-lh);
+}
+.h4-med {
+  font-size: var(--h4-med);
+  font-weight: var(--h4-med-fw);
+  letter-spacing: var(--h4-med-lspacing);
+}
+h5,
+.h5-med {
+  font-size: var(--h5-med);
+  letter-spacing: var(--h5-med-lspacing);
+  opacity: 0.6;
+}
 
-   .txt-medium {
-    font-size: var(--txt-medium);
-   }
-   .txt-up {
-    text-transform: uppercase;
-   }
-
+.txt-medium {
+  font-size: var(--txt-medium);
+}
+.txt-up {
+  text-transform: uppercase;
+}
 
 /*
    Buttons
@@ -272,20 +277,18 @@ Layout
   padding-inline: 49.5px;
 }
 
-
 /*
    Footer
    ========================================================================== */
-   .copyright {
-     margin-top: 10px;
-    @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-      margin-top: 0.6944vw;
-    }
-   }
-   .monospace {
-      font-family: monospace;
-   }
-
+.copyright {
+  margin-top: 10px;
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    margin-top: 0.6944vw;
+  }
+}
+.monospace {
+  font-family: monospace;
+}
 
 @media (prefers-color-scheme: dark) {
   html {

@@ -51,12 +51,14 @@
   width: 100%;
 
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-      position: absolute;
-      top: 0;
-      height: fit-content;
-      border-radius: 0;
-      width: fit-content;
-      justify-content: flex-end;
+    position: absolute;
+    top: 0;
+    height: fit-content;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 8px;
+    width: fit-content;
+    justify-content: flex-end;
   }
 }
 .closeTxt {
@@ -64,7 +66,7 @@
 
 .projectModal__closeBtn:hover {
   background-color: var(--dark);
- color: var(--cream);
+  color: var(--cream);
 }
 
 .projectModal__hero {
@@ -109,51 +111,60 @@
 }
 
 @keyframes fadeInOut {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 @keyframes bounceDown {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
 }
 
 .projectModal__content {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 .projectModal__body {
-    padding-block: 32px;
-    padding-inline: 24px;
-    width: 100%;
-    height: 100%;
-    @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-        padding-block: 4.444vw;
-        padding-inline: 2.777vw;
-    }
+  padding-block: 32px;
+  padding-inline: 24px;
+  width: 100%;
+  height: 100%;
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    padding-block: 4.444vw;
+    padding-inline: 2.777vw;
+  }
 }
 
 .projectModal__title {
   padding-bottom: 24px;
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-      padding-bottom: 2.2222vw;
+    padding-bottom: 2.2222vw;
   }
 }
 
 .projectModal__main {
-    gap: clamp(32px, 5vw, 48px);
-    margin-bottom: 48px;
-    flex-direction: column;
-    @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-        margin-bottom: 4.444vw;
-        flex-direction: row;
-    }
+  gap: clamp(32px, 5vw, 48px);
+  margin-bottom: 48px;
+  flex-direction: column;
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    margin-bottom: 4.444vw;
+    flex-direction: row;
+  }
 }
 
 .projectModal__roles {
   gap: 10px;
 }
-
 
 .projectModal__role {
   font-family: monospace;
@@ -163,6 +174,9 @@
 .projectModal__description {
   max-width: 525px;
   line-height: 1.4;
+}
+.projectModal__description > p:not(:last-child) {
+  margin-bottom: 1.5rem;
 }
 
 .projectModal__imageGrid {
@@ -195,7 +209,7 @@
   align-items: flex-end;
   gap: 4px;
   transition: gap 0.3s ease;
-  
+
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
     justify-content: flex-end;
   }
@@ -226,11 +240,10 @@
   position: absolute;
   left: 0;
   width: 100%;
-  text-align: center; 
-  transform: translateY(200%); 
+  text-align: center;
+  transform: translateY(200%);
   opacity: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
-
 }
 
 .projectModal__link {
@@ -246,71 +259,75 @@
     color: var(--cream);
     border: 1px solid var(--cream);
   }
-
 }
 
 /* Marquee scroll link */
 .projectModal__linkPrimary {
+  background: var(--cream);
+  color: var(--dark);
+  position: relative;
+  overflow: hidden;
+  width: 18%;
+  min-height: 200px;
+  &:hover {
     background: var(--cream);
     color: var(--dark);
-    position: relative;
-    overflow: hidden;
-    width: 18%;
-    min-height: 200px;
+    border: none;
   }
-  
-  .linkTxtContainer {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+}
+
+.linkTxtContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.linkTxt {
+  position: absolute;
+  left: 0;
+  right: 0;
+  /* top is set inline with style */
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  text-align: center;
+  width: 100%;
+  animation: marqueeScroll 15s linear infinite;
+}
+
+/* Add gradient masks for smooth fade effect */
+.linkTxtContainer::before,
+.linkTxtContainer::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 20%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.linkTxtContainer::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--cream), transparent);
+}
+
+.linkTxtContainer::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--cream), transparent);
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: rotate(180deg) translateY(0);
   }
-  
-  .linkTxt {
-    position: absolute;
-    left: 0;
-    right: 0;
-    /* top is set inline with style */
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    white-space: nowrap;
-    text-align: center;
-    width: 100%;
-    animation: marqueeScroll 15s linear infinite;
+  100% {
+    transform: rotate(180deg) translateY(400%); /* Move the height of all 4 elements */
   }
-  
-  /* Add gradient masks for smooth fade effect */
-  .linkTxtContainer::before,
-  .linkTxtContainer::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 20%;
-    z-index: 2;
-    pointer-events: none;
-  }
-  
-  .linkTxtContainer::before {
-    top: 0;
-    background: linear-gradient(to bottom, var(--cream), transparent);
-  }
-  
-  .linkTxtContainer::after {
-    bottom: 0;
-    background: linear-gradient(to top, var(--cream), transparent);
-  }
-  
-  @keyframes marqueeScroll {
-    0% {
-      transform: rotate(180deg) translateY(0);
-    }
-    100% {
-      transform: rotate(180deg) translateY(400%); /* Move the height of all 4 elements */
-    }
-  }
-  
-  /* Pause on hover */
-  .projectModal__linkPrimary:hover .linkTxt {
-    animation-play-state: paused;
-  }
+}
+
+/* Pause on hover */
+.projectModal__linkPrimary:hover .linkTxt {
+  animation-play-state: paused;
+}

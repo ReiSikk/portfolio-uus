@@ -13,7 +13,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { urlForImage } from './lib/sanity'
 import Image from 'next/image'
 
-gsap.registerPlugin(useGSAP, ScrollTrigger); // register the hook to avoid React version discrepancies
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Home() {
   // Refs for the sections that need animation

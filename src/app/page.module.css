@@ -138,12 +138,10 @@
 .triggerIcon {
   stroke: var(--cream);
   transition: transform 0.3s ease, color 0.3s ease-out;
-  height: 48px;
-  width: 48px;
-  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-    height: 96px;
-    width: 96px;
-  }
+  width: clamp(32px, 9vw, 96px);
+  height: clamp(32px, 9vw, 96px);
+  min-width: 32px;
+  min-height: 32px;
 }
 
 .triggerContent {
@@ -203,7 +201,6 @@
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
     gap: 4px;
   }
-  
 }
 
 .techStack__item:hover {
@@ -257,6 +254,7 @@
 }
 
 .footerWrap {
+  width: 100%;
 }
 
 .footerTitle {

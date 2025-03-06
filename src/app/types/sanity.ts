@@ -1,7 +1,9 @@
+import {PortableTextBlock} from '@portabletext/react'
+
 export interface Project {
     _id: string;
     title: string;
-    description: string;
+    description: PortableTextBlock[];
     heroImage: {
       asset: {
         _ref: string;
