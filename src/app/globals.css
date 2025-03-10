@@ -282,9 +282,8 @@ h5,
    ========================================================================== */
 .copyright {
   margin-top: 10px;
-  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-    margin-top: 0.6944vw;
-  }
+  font-size: 12px;
+  margin-top: clamp(8px, 2vw, 12px);
 }
 .monospace {
   font-family: monospace;

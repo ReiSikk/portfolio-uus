@@ -379,7 +379,7 @@ export default function Home() {
           </ul>
           <div className={styles.footerBottom} id="footerBottom">
             <p className="txt-up h5-med footerCredits monospace">Development & design by Rei Sikk</p>
-            <p className="h5-med copyright monospace">&copy; {new Date().getFullYear()} All rights reserved</p>
+            <p className="copyright monospace">&copy; {new Date().getFullYear()} All rights reserved</p>
           </div>
         </div>
       </footer>

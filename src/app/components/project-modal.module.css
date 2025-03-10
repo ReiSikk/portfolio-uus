@@ -7,7 +7,6 @@
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(1px);
-  border-radius: 8px;
   overflow-y: hidden;
 }
 
@@ -19,16 +18,18 @@
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--cream) var(--dark);
-  border-radius: 8px;
   z-index: 2;
   background: var(--dark);
   color: var(--cream);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+.closeTxt {
+}
 
 .projectModal__closeBtn {
   position: fixed;
-  display: flex;
+  display: inline-flex;
+  cursor: pointer;
   height: 8svh;
   min-height: 48px;
   border-top-left-radius: 8px;
@@ -46,27 +47,60 @@
   color: var(--dark);
   padding-block: 10px;
   padding-inline: 16px;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: filter 0.3s ease, border-color 0.3s ease;
   gap: 24px;
   width: 100%;
+  border-bottom: 2px solid var(--dark);
+  position: relative; /* Add this to create positioning context for absolute elements */
+  overflow: hidden; /* Add this to hide overflowing text */
 
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-    position: absolute;
+    position: sticky;
     top: 0;
     height: fit-content;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    border-bottom-left-radius: 8px;
-    width: fit-content;
-    justify-content: flex-end;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
   }
-}
-.closeTxt {
 }
 
 .projectModal__closeBtn:hover {
-  background-color: var(--dark);
-  color: var(--cream);
+filter: brightness(0.95);
+}
+.projectModal__closeBtn .mainTxt,
+.projectModal__closeBtn .hoverTxt {
+  display: block;
+  transition: transform 0.3s ease;
+}
+.projectModal__closeBtn .mainTxt {
+  display: block;
+  opacity: 1;
+}
+
+.projectModal__closeBtn .hoverTxt {
+  display: block;
+  position: absolute;
+  left: 50%; /* Position at the left edge of the button */
+  transform: translateX(-50%) translateY(200%);
+  width: fit-content;
+  text-align: center; /* Center the text horizontally */
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.projectModal__closeBtn:active {
+  background-color: var(--dark, 0.5);
+  color: var(--dark);
+}
+
+.projectModal__closeBtn:hover .mainTxt {
+  transform:  translateY(-200%);
+  opacity: 0;
+}
+
+.projectModal__closeBtn:hover .hoverTxt {
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
 }
 
 .projectModal__hero {
@@ -77,8 +111,13 @@
 
 .projectModal__heroImg {
   object-fit: cover;
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
+  padding: 20px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
 }
 
 .projectModal__heroOverlay {
@@ -87,7 +126,9 @@
   left: 0;
   right: 0;
   height: 10%;
-  padding-block: 24px 48px;
+  padding-block: 48px;
+  margin-bottom: 20px;
+  margin-inline: 20px;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
   z-index: 2;
   display: flex;
@@ -155,10 +196,10 @@
 .projectModal__main {
   gap: clamp(32px, 5vw, 48px);
   margin-bottom: 48px;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
     margin-bottom: 4.444vw;
-    flex-direction: row;
   }
 }
 
@@ -200,8 +241,8 @@
 }
 
 .rolesLinks {
-  justify-content: space-between;
   padding-top: 10px;
+  align-items: flex-start;
   gap: 24px;
 }
 .projectModal__links {

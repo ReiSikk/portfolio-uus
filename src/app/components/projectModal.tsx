@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { Project } from '../types/sanity'
 import styles from './project-modal.module.css'
 import { urlForImage } from '../lib/sanity'
-import { ArrowDown } from 'lucide-react'
+import { ArrowDown, XIcon } from 'lucide-react'
 import {PortableText} from '@portabletext/react'
 
 
@@ -61,7 +61,8 @@ export default function ProjectModal({ isOpen, project, updateModalStates }: Pro
           className={styles.projectModal__closeBtn}
           aria-label="Close modal"
         >
-            <span className={`${styles.closeTxt} txt-up h4-med`}>Close modal</span>
+            <span className={`${styles.closeTxt} ${styles.mainTxt} txt-up h4-med`}>Close modal</span>
+            <span className={`${styles.closeTxt} ${styles.hoverTxt} txt-up h4-med`}>Close modal</span>
         </button>
         
         <div className={styles.projectModal__hero}>
