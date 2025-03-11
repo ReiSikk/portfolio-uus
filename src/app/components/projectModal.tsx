@@ -50,7 +50,7 @@ export default function ProjectModal({ isOpen, project, updateModalStates }: Pro
 
 
   return (
-    <div className={styles.projectModal}>
+    <div className={styles.projectModal} aria-modal="true" aria-hidden="true" role="dialog">
       <div 
         ref={modalRef}
         className={styles.projectModal__content}
@@ -99,18 +99,35 @@ export default function ProjectModal({ isOpen, project, updateModalStates }: Pro
                     </div>
                   )}
   
-                  {project.roles && !project.githubLink && (
+                  {project.roles && (project.githubLink || project.link) && (
                     <div className={`${styles.rolesLinks} fp-col`}>
-                      <div className={styles.projectModal__links}>            
-                        <a 
-                          href={project.githubLink}
-                          className={`${styles.projectModal__link} ${styles.projectModal__linkSecondary} txt-up btn btn-primary`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <span className={styles.mainTxt}>Github Repo</span>
-                          <span className={styles.hoverTxt}>Github Repo</span>
-                        </a>
+                      <div className={styles.projectModal__links}>    
+                        {
+                          project.githubLink && (
+                            <a 
+                              href={project.githubLink}
+                              className={`${styles.projectModal__link} ${styles.projectModal__linkSecondary} txt-up btn btn-primary`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <span className={styles.mainTxt}>Github Repo</span>
+                              <span className={styles.hoverTxt}>Github Repo</span>
+                            </a>
+                          )
+                        }
+                        {
+                          project.link && (
+                            <a 
+                              href={project.link}
+                              className={`${styles.projectModal__link} ${styles.projectModal__linkSecondary} txt-up btn btn-primary`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <span className={styles.mainTxt}>View website</span>
+                              <span className={styles.hoverTxt}>View website</span>
+                            </a>
+                          )
+                        }
                       </div>
                       <div className={`${styles.projectModal__roles} fp-col`}>
                         <span className={`${styles.projectModal__rolesTitle} h5-med`}>Roles</span>

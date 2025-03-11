@@ -7,11 +7,11 @@ import { ArrowUpRight } from "lucide-react";
 import ProjectItem from "./components/ProjectItem";
 import SiteNav from "./components/SiteNav";
 import { useRef, useEffect, useState } from "react";
+import { urlForImage } from './lib/sanity'
+import Image from 'next/image'
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { urlForImage } from './lib/sanity'
-import Image from 'next/image'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -254,7 +254,7 @@ export default function Home() {
               );
             }
             
-            // Then animate each footer link, one by one (they're already in reverse order)
+            // Animate footer links
             if (reversedLinks.length) {
               reversedLinks.forEach((link, index) => {
                 footerTimeline.fromTo(
@@ -279,7 +279,7 @@ export default function Home() {
 
 
   
-  // If data is still loading, show a simple loading state
+  // Render loading state if pageContent is not fetched yet
   if (!pageContent) {
     return (
       <div className="loading">

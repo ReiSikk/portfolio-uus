@@ -116,7 +116,7 @@
 .projectsTitle {
   margin-bottom: 16px;
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-    margin-bottom: 2.777vw;
+    margin-bottom: 1.666vw;
   }
 }
 .projectsList {
