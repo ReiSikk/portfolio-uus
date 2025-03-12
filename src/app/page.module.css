@@ -281,7 +281,6 @@
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   /* ===== PROJECT LINKS HOVER STYLES ===== */
-  /* Base styles for project list items */
   .projects .projectsList__item a,
   .projects .projectsList__item div:first-child {
     color: var(--cream);
@@ -296,7 +295,7 @@
     opacity: 0.5;
   }
 
-  /* But restore full opacity and add padding for the specific project being hovered */
+  /* restore opacity and add padding for the specific project being hovered */
   .projects .projectsList .projectsList__item a:hover,
   .projects .projectsList .projectsList__item div:first-child:hover {
     color: var(--cream);
@@ -305,7 +304,6 @@
   }
 
   /* ===== FOOTER LINKS HOVER STYLES ===== */
-  /* Base styles for footer links */
   .footer .footerMain .projectsList__item a,
   .footer .footerMain .projectsList__item .trigger {
     color: var(--cream);
@@ -327,7 +325,6 @@
   }
 
   /* Hero btn hovers */
-  /* On hover, move the main text up and bring the hover text in */
   .heroBtn:hover .mainTxt {
     transform: translateY(-200%);
     opacity: 0;

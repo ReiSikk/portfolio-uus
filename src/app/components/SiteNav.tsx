@@ -12,6 +12,8 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 function SiteNav() {
     const { width } = useViewportSize();
+    const isMobile = width !== undefined && width < 768;
+
       const navRef = useRef<HTMLElement>(null);
 
       useGSAP(() => {
@@ -33,10 +35,6 @@ function SiteNav() {
           }
         );
       })
-
-  
-    // You can conditionally render based on viewport size
-    const isMobile = width !== undefined && width < 768;
 
   return (
     <nav className={styles.siteNav} ref={navRef}>

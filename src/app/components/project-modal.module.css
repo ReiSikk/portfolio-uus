@@ -22,6 +22,7 @@
   background: var(--dark);
   color: var(--cream);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateZ(0); /* Creates a new stacking context */
 }
 .projectModal__content::-webkit-scrollbar {
   display: none;
@@ -87,7 +88,7 @@
   width: fit-content;
   text-align: center; /* Center the text horizontally */
   opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.1s ease;
 }
 .projectModal__closeBtn:active {
   background-color: var(--dark, 0.5);
@@ -198,10 +199,11 @@
 .projectModal__main {
   gap: clamp(32px, 5vw, 48px);
   margin-bottom: 48px;
-  flex-wrap: wrap;
   justify-content: space-between;
+  flex-wrap: wrap;
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
     margin-bottom: 4.444vw;
+    flex-direction: row;
   }
 }
 
@@ -244,18 +246,47 @@
 }
 
 .rolesLinks {
+  width: 100%;
   padding-top: 10px;
   align-items: flex-start;
-  gap: 24px;
+  flex-direction: column-reverse;
+  gap: 32px;
+
+  @media only screen and (min-width: 1025px) {
+    flex-direction: column;
+    width: fit-content;
+  }
 }
 .projectModal__links {
   display: flex;
   align-items: flex-end;
-  gap: 4px;
+  gap: 16px;
   transition: gap 0.3s ease;
+  width: 100%;
+
+  @media (max-width: 468px) {
+    flex-direction: column;
+  }
 
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
     justify-content: flex-end;
+    flex-direction: row;
+    width: fit-content;
+  }
+}
+.projectModal__link {
+  @media only screen and (max-width: 767px) {
+    flex: 1;
+    width: 100%;
+  }
+}
+.projectModal__link.secondary {
+  background: var(--dark);
+  color: var(--cream);
+  border: 1px solid var(--cream);
+  &:hover {
+    background: var(--cream);
+    color: var(--dark);
   }
 }
 

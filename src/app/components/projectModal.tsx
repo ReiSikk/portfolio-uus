@@ -5,8 +5,9 @@ import Image from 'next/image'
 import { Project } from '../types/sanity'
 import styles from './project-modal.module.css'
 import { urlForImage } from '../lib/sanity'
-import { ArrowDown, XIcon } from 'lucide-react'
+import { ArrowDown } from 'lucide-react'
 import {PortableText} from '@portabletext/react'
+import useViewportSize from '../lib/viewportSize'
 
 
 interface ProjectModalProps {
@@ -19,6 +20,9 @@ export default function ProjectModal({ isOpen, project, updateModalStates }: Pro
   const modalRef = useRef<HTMLDivElement>(null)
   const [fontSize, setFontSize] = useState(24);
   const [padding, setPadding] = useState(20);
+
+  const { width } = useViewportSize();
+  const isMobile = width !== undefined && width < 768;
   
   useEffect(() => {
     if (isOpen && modalRef.current) {
@@ -61,8 +65,8 @@ export default function ProjectModal({ isOpen, project, updateModalStates }: Pro
           className={styles.projectModal__closeBtn}
           aria-label="Close modal"
         >
-            <span className={`${styles.closeTxt} ${styles.mainTxt} txt-up h4-med`}>Close modal</span>
-            <span className={`${styles.closeTxt} ${styles.hoverTxt} txt-up h4-med`}>Close modal</span>
+            <span className={`${styles.closeTxt} ${styles.mainTxt} txt-up h4-med`}>{!isMobile ? "Press esc or click to close" : "Close modal" }</span>
+            <span className={`${styles.closeTxt} ${styles.hoverTxt} txt-up h4-med`}>{!isMobile ? "Press esc or click to close" : "Close modal" }</span>
         </button>
         
         <div className={styles.projectModal__hero}>
@@ -103,10 +107,10 @@ export default function ProjectModal({ isOpen, project, updateModalStates }: Pro
                     <div className={`${styles.rolesLinks} fp-col`}>
                       <div className={styles.projectModal__links}>    
                         {
-                          project.githubLink && (
+                          project.githubLink && !project.link && (
                             <a 
                               href={project.githubLink}
-                              className={`${styles.projectModal__link} ${styles.projectModal__linkSecondary} txt-up btn btn-primary`}
+                              className={`${styles.projectModal__link} txt-up btn btn-primary`}
                               target="_blank"
                               rel="noopener noreferrer"
                             >
@@ -116,10 +120,10 @@ export default function ProjectModal({ isOpen, project, updateModalStates }: Pro
                           )
                         }
                         {
-                          project.link && (
+                          project.link && !project.githubLink && (
                             <a 
                               href={project.link}
-                              className={`${styles.projectModal__link} ${styles.projectModal__linkSecondary} txt-up btn btn-primary`}
+                              className={`${styles.projectModal__link} txt-up btn btn-primary`}
                               target="_blank"
                               rel="noopener noreferrer"
                             >
@@ -128,6 +132,28 @@ export default function ProjectModal({ isOpen, project, updateModalStates }: Pro
                             </a>
                           )
                         }
+                        {project.link && project.githubLink && (
+                          <>
+                            <a 
+                              href={project.githubLink}
+                              className={`${styles.projectModal__link} txt-up btn btn-primary`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <span className={styles.mainTxt}>Github Repo</span>
+                              <span className={styles.hoverTxt}>Github Repo</span>
+                            </a>
+                            <a 
+                              href={project.link}
+                              className={`${styles.projectModal__link} ${styles.secondary} txt-up btn btn-primary`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <span className={styles.mainTxt}>View website</span>
+                              <span className={styles.hoverTxt}>View website</span>
+                            </a>
+                          </>
+                        )}
                       </div>
                       <div className={`${styles.projectModal__roles} fp-col`}>
                         <span className={`${styles.projectModal__rolesTitle} h5-med`}>Roles</span>
@@ -162,7 +188,7 @@ export default function ProjectModal({ isOpen, project, updateModalStates }: Pro
             </div>
           
 
-          {project.link && (
+          {/* {project.link && (
             <a 
             href={project.link}
             className={`${styles.projectModal__link} ${styles.projectModal__linkPrimary} col-m-none`}
@@ -186,7 +212,7 @@ export default function ProjectModal({ isOpen, project, updateModalStates }: Pro
                 ))}
             </div>
             </a>
-            )}
+            )} */}
         </div>
       </div>
     </div>
