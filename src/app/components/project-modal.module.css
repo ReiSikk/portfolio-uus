@@ -8,7 +8,7 @@
   background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(1px);
   overflow-y: hidden;
-  margin-block: 5svh 0;
+  padding-block: 5svh 0;
 }
 
 .projectModal__content {
