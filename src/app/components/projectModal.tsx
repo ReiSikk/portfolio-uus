@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { Project } from '../types/sanity'
 import styles from './project-modal.module.css'
@@ -18,19 +18,19 @@ interface ProjectModalProps {
 
 export default function ProjectModal({ isOpen, project, updateModalStates }: ProjectModalProps) {
   const modalRef = useRef<HTMLDivElement>(null)
-  const [fontSize, setFontSize] = useState(24);
-  const [padding, setPadding] = useState(20);
+  // const [fontSize, setFontSize] = useState(24);
+  // const [padding, setPadding] = useState(20);
 
   const { width } = useViewportSize();
   const isMobile = width !== undefined && width < 768;
   
-  useEffect(() => {
-    if (isOpen && modalRef.current) {
-      const containerHeight = modalRef.current.clientHeight;
-      setFontSize(Math.max(24, containerHeight / 8));
-      setPadding(Math.max(20, containerHeight * 0.1));
-    }
-  }, [isOpen]);
+  // useEffect(() => {
+  //   if (isOpen && modalRef.current) {
+  //     const containerHeight = modalRef.current.clientHeight;
+  //     setFontSize(Math.max(24, containerHeight / 8));
+  //     setPadding(Math.max(20, containerHeight * 0.1));
+  //   }
+  // }, [isOpen]);
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
