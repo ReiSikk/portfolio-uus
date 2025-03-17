@@ -12,7 +12,6 @@ import Image from 'next/image'
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import useMousePosition from "./lib/cursorPosition";
 import CustomCursor from "./components/CustomCursor";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
