@@ -12,10 +12,17 @@ import Image from 'next/image'
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import useMousePosition from "./lib/cursorPosition";
+import CustomCursor from "./components/CustomCursor";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Home() {
+  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+   // Define a handler for project hover
+   const handleProjectHover = (projectId: string | null) => {
+    setHoveredProject(projectId);
+  };
   // Refs for the sections that need animation
   const container = useRef(null);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -290,6 +297,7 @@ export default function Home() {
 
   return (
     <div className={`${styles.page}`} ref={container}>
+       <CustomCursor hoveredProject={hoveredProject} />
       <header className={`${styles.siteHeader} container`}>
         <SiteNav />
         <div className={styles.hero} ref={heroRef}>
@@ -305,7 +313,12 @@ export default function Home() {
           <h2 className={`${styles.projectsTitle} txt-up h4-med`}>{pageContent.projectsTitle}</h2>
           <ul className={styles.projectsList}>
             {projects.map((project) => (
-              <ProjectItem key={project._id} project={project} />
+              <ProjectItem 
+              key={project._id} 
+              project={project} 
+              onMouseEnter={() => handleProjectHover(project.title)}
+              onMouseLeave={() => handleProjectHover(null)}
+              />
             ))}
           </ul>
         </section>

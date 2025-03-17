@@ -105,6 +105,9 @@ footer {
   display: flex;
   inset: 0;
 }
+.hide-cursor {
+  cursor: none;
+}
 
 /*
 Layout
