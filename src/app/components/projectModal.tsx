@@ -45,12 +45,15 @@ export default function ProjectModal({ isOpen, project, updateModalStates }: Pro
 
 
   return (
-    <div className={styles.projectModal} aria-modal="true" aria-hidden="true" role="dialog">
+    <div className={styles.projectModal} aria-modal="true" aria-labelledby='dialog-title' role="dialog">
       <div 
         ref={modalRef}
         className={styles.projectModal__content}
         onClick={(e) => e.stopPropagation()}
       >
+         <h2 id="dialog-title" className="sr-only">
+            {project.title} - Project Details
+        </h2>
         <button 
           onClick={updateModalStates}
           className={styles.projectModal__closeBtn}
