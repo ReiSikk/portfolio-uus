@@ -71,16 +71,9 @@ export default function CustomCursor({ hoveredProject }: CustomCursorProps) {
       setIsVisible(true);
     } else {
       // Hide cursor when not hovering
-      gsap.to(cursorRef.current, {
-        opacity: 0,
-        scale: 0.8,
-        duration: 0.3,
-        onComplete: () => {
-          setIsVisible(false);
-          setCursorText("");
-          setCursorSize({ width: 80, height: 80 });
-        },
-      });
+      setIsVisible(false);
+      setCursorText("");
+      setCursorSize({ width: 80, height: 80 });
     }
   }, [hoveredProject, isMobile]);
 

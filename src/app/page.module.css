@@ -248,6 +248,9 @@
 .footer {
   background: #0b0b0b;
   padding-block: 64px;
+  z-index: 0;
+  transform: translateZ(0);
+  
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
     padding-block: 8.333vw;
   }
