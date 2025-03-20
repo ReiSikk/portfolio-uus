@@ -108,10 +108,13 @@
 
 .main {
   position: relative;
-  z-index: 1;
+  z-index: 5;
   background: var(--dark);
 }
-.projects {
+.projects, .services, .about {
+  position: relative;
+  z-index: 2;
+  background: var(--dark);
 }
 .projectsTitle {
   margin-bottom: 16px;
@@ -248,8 +251,6 @@
 .footer {
   background: #0b0b0b;
   padding-block: 64px;
-  z-index: 0;
-  transform: translateZ(0);
   
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
     padding-block: 8.333vw;
@@ -336,5 +337,14 @@
   .heroBtn:hover .hoverTxt {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+
+/* Add this to help with mobile scrolling */
+@supports (-webkit-overflow-scrolling: touch) {
+  /* iOS Safari specific fixes */
+  .page {
+    transform: translate3d(0,0,0); /* Force GPU acceleration */
   }
 }
