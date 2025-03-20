@@ -226,7 +226,6 @@ export default function Home() {
             
             // The footer links in reverse order (we need to get them individually)
             const footerLinks = Array.from(footerRef.current.querySelectorAll(`.${styles.footerMain} > li`));
-            const reversedLinks = [...footerLinks].reverse();
             
             // Animation order: copyright, footerCredits, and all footerLinks from last to first
             
@@ -261,8 +260,8 @@ export default function Home() {
             }
             
             // Animate footer links
-            if (reversedLinks.length) {
-              reversedLinks.forEach((link, index) => {
+            if (footerLinks.length) {
+              footerLinks.forEach((link, index) => {
                 footerTimeline.fromTo(
                   link,
                   { y: 20, autoAlpha: 0 },

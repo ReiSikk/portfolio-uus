@@ -102,9 +102,6 @@ ul {
   padding: 0;
 }
 footer {
-  position: sticky;
-  z-index: 0;
-  bottom: 0;
 }
 .hide-cursor {
   cursor: none;
