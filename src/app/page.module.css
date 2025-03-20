@@ -108,7 +108,7 @@
 
 .main {
   position: relative;
-  z-index: 5;
+  z-index: 1;
   background: var(--dark);
 }
 .projects, .services, .about {
