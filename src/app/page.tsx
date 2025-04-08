@@ -300,9 +300,9 @@ export default function Home() {
         <SiteNav />
         <div className={styles.hero} ref={heroRef}>
           <h1 className={`${styles.heroTitle} h2`}>{pageContent.heroTitle}</h1>
-          <a href="mailto:sikkrei@gmail.com" className={`${styles.heroBtn} btn btn-large`}>
-            <span className={styles.mainTxt}>{pageContent.heroBtn}</span>
-            <span className={styles.hoverTxt}>{pageContent.heroBtn}</span>
+          <a href="mailto:sikkrei@gmail.com" className={`${styles.heroBtn} btn btn-large hoverBtn`}>
+            <span className="mainTxt">{pageContent.heroBtn}</span>
+            <span className="hoverTxt">{pageContent.heroBtn}</span>
           </a>
         </div>
       </header>

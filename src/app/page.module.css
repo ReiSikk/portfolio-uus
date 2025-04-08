@@ -46,40 +46,12 @@
 
 /* Hero button with hover text effect */
 .heroBtn {
-  position: relative;
-  overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.3s ease;
   border: 1px solid transparent;
   &:hover {
     color: var(--cream);
     background: var(--dark);
     border: 1px solid var(--cream);
   }
-}
-
-/* Style both text spans in heroBtn */
-.heroBtn .mainTxt,
-.heroBtn .hoverTxt {
-  display: block;
-  transition: transform 0.3s ease;
-}
-.heroBtn .mainTxt {
-  display: block;
-  opacity: 1;
-}
-
-.heroBtn .hoverTxt {
-  display: block;
-  position: absolute;
-  left: 0; /* Position at the left edge of the button */
-  width: 100%; /* Take full width of the button */
-  text-align: center; /* Center the text horizontally */
-  transform: translateY(200%); /* Keep the vertical offset */
-  opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 /*
@@ -324,16 +296,6 @@
     padding-inline: 0.34722vw;
   }
 
-  /* Hero btn hovers */
-  .heroBtn:hover .mainTxt {
-    transform: translateY(-200%);
-    opacity: 0;
-  }
-
-  .heroBtn:hover .hoverTxt {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
 
 
