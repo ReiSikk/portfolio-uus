@@ -13,14 +13,18 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CustomCursor from "./components/CustomCursor";
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Home() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+  const [hoveredProjectImage, setHoveredProjectImage] = useState<SanityImageSource | null>(null);
+
    // Define a handler for project hover
-   const handleProjectHover = (projectId: string | null) => {
+   const handleProjectHover = (projectId: string | null, projectImage: SanityImageSource | null) => {
     setHoveredProject(projectId);
+    setHoveredProjectImage(projectImage);
   };
   // Refs for the sections that need animation
   const container = useRef(null);
@@ -295,7 +299,7 @@ export default function Home() {
 
   return (
     <div className={`${styles.page}`} ref={container}>
-       <CustomCursor hoveredProject={hoveredProject} />
+       <CustomCursor hoveredProject={hoveredProject}  hoveredProjectImage={hoveredProjectImage} />
       <header className={`${styles.siteHeader} container`}>
         <SiteNav />
         <div className={styles.hero} ref={heroRef}>
@@ -314,8 +318,8 @@ export default function Home() {
               <ProjectItem 
               key={project._id} 
               project={project} 
-              onMouseEnter={() => handleProjectHover(project.title)}
-              onMouseLeave={() => handleProjectHover(null)}
+              onMouseEnter={() => handleProjectHover(project.title, project.heroImage)}
+              onMouseLeave={() => handleProjectHover(null, null)}
               />
             ))}
           </ul>

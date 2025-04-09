@@ -6,28 +6,54 @@ import useMousePosition from "../lib/cursorPosition";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import useViewportSize from "../lib/viewportSize";
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { urlForImage } from '@/app/lib/sanity';
+
 
 gsap.registerPlugin(useGSAP);
 
 interface CustomCursorProps {
   hoveredProject: string | null;
+  hoveredProjectImage?: SanityImageSource | null;
 }
 
-export default function CustomCursor({ hoveredProject }: CustomCursorProps) {
+export default function CustomCursor({ hoveredProject, hoveredProjectImage }: CustomCursorProps) {
   const { x, y } = useMousePosition();
   const [isVisible, setIsVisible] = useState(false);
   const textRef = useRef<HTMLSpanElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
   const textMeasureRef = useRef<HTMLSpanElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
 
   // Keep track of current content
   const [cursorText, setCursorText] = useState("");
   const [cursorSize, setCursorSize] = useState({ width: 80, height: 80 });
+  const [cursorImage, setCursorImage] = useState<string | null>(null);
 
 
   // Get viewport size to apply custom cursor only on desktop
   const { width } = useViewportSize();
   const isMobile = width !== undefined && width < 768;
+
+  // Get project images
+  const getImageUrl = (imageField: SanityImageSource) => {
+    if (!imageField) return null;
+    try {
+      return urlForImage(imageField).url();
+    } catch (error) {
+      console.error("Error generating image URL:", error);
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    if (hoveredProjectImage) {
+      const imageUrl = getImageUrl(hoveredProjectImage);
+      setCursorImage(imageUrl);
+    } else {
+      setCursorImage(null);
+    }
+  }, [hoveredProjectImage]);
   
   
   // Handle visibility and text content
@@ -92,7 +118,22 @@ export default function CustomCursor({ hoveredProject }: CustomCursorProps) {
           delay: 0.2,
         }
       );
-  }, [cursorText, isVisible, isMobile]);
+
+       // Add animation for image if it exists
+    if (imageRef.current && cursorImage) {
+      gsap.fromTo(
+        imageRef.current,
+        { opacity: 0 },
+        {
+          opacity: 0.6, // Semi-transparent image
+          duration: 0.4,
+          ease: "power2.out",
+          delay: 0.1,
+        }
+      );
+    }
+
+  }, [cursorText, cursorImage, isVisible, isMobile]);
 
   // Initial animation for cursor appearance
   useGSAP(() => {
@@ -137,9 +178,19 @@ export default function CustomCursor({ hoveredProject }: CustomCursorProps) {
           height: `${cursorSize.height}px`,
         }}
       >
-        <span ref={textRef} className={styles.cursorText}>
+        {/* <span ref={textRef} className={styles.cursorText}>
           {cursorText}
-        </span>
+        </span> */}
+        {cursorImage && (
+          <div className={styles.cursorImageContainer}>
+            <img
+              ref={imageRef}
+              src={cursorImage}
+              alt=""
+              className={styles.cursorImage}
+            />
+          </div>
+        )}
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 .customCursor {
     position: fixed;
-    height: 80px;
+    /* height: 80px; */
+    height: 400px;
     border-radius: 8px;
     padding-inline: 16px;
     background-color: var(--cream);
@@ -23,3 +24,24 @@
     transition: opacity 0.3s, transform 0.3s;
       font-family: monospace;
   }
+
+
+  /* Image styling */
+.cursorImageContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 200px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.cursorImage {
+  width: 100%;
+  height: auto;
+  object-position: center;
+  opacity: 1; /* Semi-transparent by default */
+  mix-blend-mode: overlay; /* Creates a nice overlay effect with text */
+}
