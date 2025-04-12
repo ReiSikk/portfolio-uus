@@ -1,29 +1,25 @@
 .customCursor {
     position: fixed;
     /* height: 80px; */
-    border-radius: 8px;
     padding-inline: 16px;
-    background-color: var(--cream);
-    width: 100%;
-    color: var(--dark);
     pointer-events: none;
     z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: translate(33%, 33%);
+    transform: translate(10%, 10%);
     transition: width 0.3s, height 0.3s;
-  }
-  
-  .cursorText {
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 14px;
+    will-change: transform;
+    width: 30vw;
+    height: 20vw;
+    background: none;
     opacity: 0;
-    transition: opacity 0.3s, transform 0.3s;
-      font-family: monospace;
+    display: none;
   }
-
+  .customCursor.visible {
+    display: flex;
+    opacity: 1;
+  }
 
   /* Image styling */
 .cursorImageContainer {
@@ -32,14 +28,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: 250px;
+  height: 34.179vh;
+  width: 450px;
+  border: 10px solid var(--cream);
   overflow: hidden;
   z-index: 1;
-  /* width: 17.361vw; */
-}
-
-.cursorImage {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-position: center;
+  background-color: rgba(0, 0, 0, 1);
 }
