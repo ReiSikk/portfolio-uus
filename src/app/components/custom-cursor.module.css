@@ -4,6 +4,7 @@
     border-radius: 8px;
     padding-inline: 16px;
     background-color: var(--cream);
+    width: 100%;
     color: var(--dark);
     pointer-events: none;
     z-index: 9999;
@@ -31,10 +32,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  width: 17.361vw;
   height: 250px;
   overflow: hidden;
   z-index: 1;
+  /* width: 17.361vw; */
 }
 
 .cursorImage {

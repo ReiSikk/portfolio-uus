@@ -23,6 +23,25 @@ export default function ProjectItem({ project, onMouseEnter, onMouseLeave }: Pro
     onMouseLeave?.();
   };
 
+  // Remove the hide-cursor class when user navigates away
+  const handleClick = () => {
+    // Remove hide-cursor class before navigation
+    document.body.classList.remove('hide-cursor');
+  };
+
+    // Create a clean slug from the client name
+    const createCleanSlug = (text: string) => {
+      if (!text) return '';
+      return text
+        .toLowerCase()
+        .replace(/\s+/g, '-')     // Replace spaces with hyphens
+        .replace(/--+/g, '-')     // Replace multiple hyphens with single hyphen
+        .replace(/^-+/, '')       // Trim hyphens from start
+        .replace(/-+$/, '');      // Trim hyphens from end
+    };
+    
+    const slug = project.title ? createCleanSlug(project.title) : '';
+
   return (
     <>
       <li 
@@ -30,7 +49,12 @@ export default function ProjectItem({ project, onMouseEnter, onMouseLeave }: Pro
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       >
-        <Link href={`/projects/${encodeURIComponent(project.title || '')}?id=${encodeURIComponent(project._id)}`}>
+        <Link 
+        href={`/projects/${slug}`} 
+        prefetch={true} 
+        aria-label={`View details about ${project.title} project`}
+        onClick={handleClick}
+        >
         <div className={`${styles.trigger} fp`}>
           <h3 className="h1-large">{project.title}</h3>
           <ArrowUpRight size={96} strokeWidth={1} className={`${styles.triggerIcon} img-responsive`} />

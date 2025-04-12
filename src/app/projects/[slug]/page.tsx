@@ -16,31 +16,14 @@ type Props = {
 
 export default async function ProjectPage(props: Props) {
 
-    const params = await props.params;
-    const searchParams = await props.searchParams;
-    
-    let projectId: string | null = null;
-    
-    // Access id from searchParams safely
-    const idParam = searchParams.id;
-    if (idParam) {
-      projectId = typeof idParam === 'string' 
-        ? idParam 
-        : Array.isArray(idParam) ? idParam[0] : null;
-    }
-    
-    // If no ID from search params, try to get it from slug
-    if (!projectId && params.slug) {
-      try {
-        projectId = await getProjectIdFromSlug(decodeURIComponent(params.slug));
-      } catch (error) {
-        console.error("Error getting project ID from slug:", error);
-      }
-    }
+    const { slug } = await props.params;
+
+     // Get project ID from slug
+    const projectId = await getProjectIdFromSlug(slug);
     
     // If still no ID, return 404
     if (!projectId) {
-      console.error("Could not find project ID for slug:", params.slug);
+      console.error("Could not find project ID for slug:", slug);
       return notFound();
     }
     

@@ -159,9 +159,10 @@
   margin-bottom: clamp(16px, 2vw, 24px);
 }
 .serviceText {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   line-height: 1.6;
-  max-width: 62ch;
+  max-width: 66ch;
+  color: rgba(255, 255, 255, 0.7);
 }
 .techStack {
   display: grid;
