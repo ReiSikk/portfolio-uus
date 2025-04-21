@@ -1,37 +1,32 @@
 .customCursor {
-    position: fixed;
-    /* height: 80px; */
-    padding-inline: 16px;
-    pointer-events: none;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translate(10%, 10%);
-    transition: width 0.3s, height 0.3s;
-    will-change: transform;
-    width: 30vw;
-    height: 20vw;
-    background: none;
-    opacity: 0;
-    display: none;
-  }
-  .customCursor.visible {
-    display: flex;
-    opacity: 1;
-  }
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30vw;
+  height: 20vw;
+  pointer-events: none;
+  transform: translate(10%, 10%);
+  transition: width 0.3s, height 0.3s;
+  will-change: transform;
+  opacity: 0;
+  display: none;
+}
+.customCursor.visible {
+  display: flex;
+  opacity: 1;
+}
 
-  /* Image styling */
+/* Image styling */
 .cursorImageContainer {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 34.179vh;
-  width: 450px;
-  border: 10px solid var(--cream);
   overflow: hidden;
+  border: 1.6rem solid var(--cream);
   z-index: 1;
-  background-color: rgba(0, 0, 0, 1);
 }
+

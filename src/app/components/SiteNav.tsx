@@ -37,7 +37,7 @@ function SiteNav() {
       })
 
   return (
-    <nav className={styles.siteNav} ref={navRef}>
+    <nav className={styles.siteNav} ref={navRef} aria-label='Main Navigation'>
     <ul className={`${styles.siteNavList} fp`}>
       <li>
         <span className="h4-med txt-up">

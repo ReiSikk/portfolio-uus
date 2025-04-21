@@ -397,6 +397,9 @@ export default function Home() {
             <p className="copyright monospace">&copy; {new Date().getFullYear()} All rights reserved</p>
           </div>
         </div>
+        <div className={styles.blobsContainer}>
+          <div className={`${styles.blob} ${styles.blob1}`}></div>
+        </div>
       </footer>
     </div>
   );

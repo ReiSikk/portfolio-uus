@@ -95,6 +95,7 @@ export default function CustomCursor({ hoveredProject, hoveredProjectImage }: Cu
         { scale: 1, opacity: 0, filter: "blur(10px)" },
         { scale: 1, opacity: 1, duration: 1.2, filter: "blur(0px)", ease: "back.out(1.7)" }
       );
+
   }, [isVisible, isMobile]);
 
   // Don't render cursor on mobile or when not visible
