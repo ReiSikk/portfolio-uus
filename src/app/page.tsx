@@ -393,7 +393,10 @@ export default function Home() {
             </li>
           </ul>
           <div className={styles.footerBottom} id="footerBottom">
-            <p className="txt-up h5-med footerCredits monospace">Development & design by Rei Sikk</p>
+            <a href="https://www.linkedin.com/in/rei-sikk18/" target="_blank" 
+            rel="noopener norefferer" 
+            aria-label="Visit Rei's LinkedIn profile"
+            className="txt-up h5-med footerCredits monospace">Development & design by Rei Sikk</a>
             <p className="copyright monospace">&copy; {new Date().getFullYear()} All rights reserved</p>
           </div>
         </div>
