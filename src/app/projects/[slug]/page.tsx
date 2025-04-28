@@ -111,8 +111,11 @@ export default async function ProjectPage(props: Props) {
                             <Image 
                             src={getImageUrl(image) || ''}
                             alt={`${project.title} image ${index + 1}`}
-                            width={500}
-                            height={500}
+                            width={1256}
+                            height={676}
+                            quality={100}
+                            placeholder="blur"
+                            blurDataURL={getImageUrl(image) || ''}
                             className={`${styles.galleryImage} img-cover`}
                             priority={index === 0}
                             />
