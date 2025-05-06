@@ -5,8 +5,8 @@ import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 
 const sanityClient = createClient({
-  projectId: 'mpm26m66',
-  dataset: 'production',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   apiVersion: '2025-02-26',
   useCdn: true, 
 });
