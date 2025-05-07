@@ -2,171 +2,155 @@
     Project Page Module CSS
    ========================================================================== */
 .projectPage__wrapper {
-    margin-block: 48px;
+  margin-block: 48px;
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-        margin-top: 3.333vw;
-    }
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    margin-top: 3.333vw;
+  }
 }
 .projectPage {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr;
-    padding-bottom: 100px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding-bottom: 100px;
 
-    @media only screen and (min-width: 1025px) {
-        grid-template-columns: 1fr 1fr;
-        padding-bottom: 6.9444vw;
-    }
+  @media only screen and (min-width: 1025px) {
+    grid-template-columns: 1fr 1fr;
+    padding-bottom: 6.9444vw;
+  }
 }
 .project__main {
-    position: relative;
+  position: relative;
 
-    @media only screen and (min-width: 1025px) {
-        padding-right: 7.36111vw;
-    }
-
+  @media only screen and (min-width: 1025px) {
+    padding-right: 7.36111vw;
+  }
 }
 .main__wrapper {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 64px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 64px;
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-        top: 4.444vw;
-    }
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    top: 4.444vw;
+  }
 }
 .title {
-
 }
 .roles {
-    margin-top: 24px;
+  margin-top: 24px;
 
-    @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-        margin-top: 4.444vw;
-    }
-
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    margin-top: 4.444vw;
+  }
 }
 
 .link {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    margin-block: 24px 64px;
-    background: var(--dark);
-    width: fit-content;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-block: 24px 64px;
+  background: var(--dark);
+  width: fit-content;
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    margin-bottom: 2.222vw 6.9444vw;
+  }
+
+  &:hover {
+    .text {
+      margin-left: 24px;
+    }
+  }
+
+  .divider {
+    display: block;
+    width: 48px;
+    height: 1px;
+    background: var(--cream);
 
     @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-        margin-bottom: 2.222vw 6.9444vw;
+      width: 3.333vw;
     }
+  }
 
-
-    &:hover {
-        .text {
-            margin-left: 24px;
-        }
-    }
-
-
-    .divider {
-        display: block;
-        width: 48px;
-        height: 1px;
-        background: var(--cream);
-    
-        @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-            width: 3.333vw;
-        }
-    }
-    
-    .text  {
-        transition: margin-left 0.3s ease;
-        margin-left: 16px;
-    }
+  .text {
+    transition: margin-left 0.3s ease;
+    margin-left: 16px;
+  }
 }
 
 .rolesList {
-    flex-wrap: wrap;
-    gap: 8px 16px;
-
+  flex-wrap: wrap;
+  gap: 8px 16px;
 }
 .rolesList__item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 16px;
 
-    &:not(:last-child) {
-        .role {
-            @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {      
-                margin-right: 16px;
-        
-                &:after {
-                    position: absolute;
-                    content: '/';
-                    display: block;
-                    user-select: none;
-                    white-space: pre;
-                    top: 0;
-                    right: -20px;
-                }
+  &:not(:last-child) {
+    .role {
+      @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+        margin-right: 16px;
+
+        &:after {
+          position: absolute;
+          content: "/";
+          display: block;
+          user-select: none;
+          white-space: pre;
+          top: 0;
+          right: -20px;
         }
-        }
-        }
+      }
+    }
+  }
 }
 .role {
-    position: relative;
-    font-style: italic;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    text-wrap: nowrap;
+  position: relative;
+  font-style: italic;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  text-wrap: nowrap;
 }
 .project__description {
-    .description__paragraph {
-        max-width: 66ch;
-    }
-    .description__paragraph:not(:last-child) {
-        margin-bottom: 16px;
-
-        @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-            margin-bottom: 1.111vw;
-        }
-    }
-
-}
-.project__side {
-    position: relative;
-    width: 100%;
-    margin-top: 64px;
-
-    @media only screen and (min-width: 1025px) {
-        height: 100%;
-        overflow-y: scroll;
-        /* Hide scrollbar */
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* Internet Explorer and Edge */
-        &::-webkit-scrollbar {
-            display: none; /* Safari and Chrome */
-        }
-        margin-top: 0;
-    }
-
-}
-.gallery {
-
-}
-.galleryList {
-    gap: 24px;
+  .description__paragraph {
+    max-width: 66ch;
+  }
+  .description__paragraph:not(:last-child) {
+    margin-bottom: 16px;
 
     @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-        gap: 1.666vw;
+      margin-bottom: 1.111vw;
     }
+  }
+}
+.project__side {
+  position: relative;
+  width: 100%;
+  margin-top: 64px;
 
+  @media only screen and (min-width: 1025px) {
+    height: 100%;
+    overflow-y: scroll;
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    margin-top: 0;
+  }
+}
+.galleryList {
+  gap: 24px;
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    gap: 1.666vw;
+  }
 }
 .galleryItem {
-    height: 23.472vw;
-
-}
-.galleryImage {
-
+  height: 23.472vw;
 }
