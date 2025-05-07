@@ -368,6 +368,35 @@ h5,
 }
 
 /*
+   GSAP Masked lines
+   ========================================================================== */
+   .masked-lines {
+    opacity: 1;
+    will-change: transform;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .masked-lines * {
+    will-change: transform;
+    overflow: hidden;
+    position: relative;
+    display: block;
+  }
+  
+  .masked-lines .line-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-color: var(--dark);
+    transform-origin: top;
+    transform: scaleY(1);
+  }
+
+
+/*
    Footer
    ========================================================================== */
 .copyright {

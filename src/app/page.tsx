@@ -6,14 +6,14 @@ import sanityClient from "./lib/sanity";
 import { ArrowUpRight } from "lucide-react";
 import ProjectItem from "./components/ProjectItem";
 import SiteNav from "./components/SiteNav";
-import { useRef, useEffect, useState } from "react";
-import { urlForImage } from './lib/sanity'
-import Image from 'next/image'
+import { useRef, useEffect, useState, useLayoutEffect } from "react";
+import { urlForImage } from "./lib/sanity";
+import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CustomCursor from "./components/CustomCursor";
-import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -21,8 +21,8 @@ export default function Home() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [hoveredProjectImage, setHoveredProjectImage] = useState<SanityImageSource | null>(null);
 
-   // Define a handler for project hover
-   const handleProjectHover = (projectId: string | null, projectImage: SanityImageSource | null) => {
+  // Define a handler for project hover
+  const handleProjectHover = (projectId: string | null, projectImage: SanityImageSource | null) => {
     setHoveredProject(projectId);
     setHoveredProjectImage(projectImage);
   };
@@ -92,6 +92,12 @@ export default function Home() {
                   start: "top 80%", // Trigger when top of section reaches 80% down viewport
                   toggleActions: "play none none none", // Play animation once when scrolled into view
                   markers: false, // Set to true for debugging
+                },
+                splitText: {
+                  type: "lines, words, chars",
+                  linesClass: "line",
+                  wordsClass: "word",
+                  charsClass: "char",
                 },
               }
             );
@@ -194,7 +200,7 @@ export default function Home() {
         if (footerRef.current) {
           // Get a reference to the main element
           const mainElement = document.querySelector(`.${styles.main}`);
-          
+
           if (mainElement) {
             // Create a timeline for footer animations
             const footerTimeline = gsap.timeline({
@@ -204,9 +210,9 @@ export default function Home() {
                 toggleActions: "play none none none",
                 markers: false, // Set to true for debugging
                 once: true, // Only trigger once
-              }
+              },
             });
-            
+
             // 1. First animate the footer title
             const footerTitle = footerRef.current.querySelector(`.${styles.footerTitle}`);
             if (footerTitle) {
@@ -221,18 +227,18 @@ export default function Home() {
                 }
               );
             }
-        
+
             // 2. Create specific targets in the proper order
-            
+
             // Footer bottom elements first
             const copyright = footerRef.current.querySelector(`.copyright`);
             const footerCredits = footerRef.current.querySelector(`.${styles.footerCredits}`);
-            
+
             // The footer links in reverse order (we need to get them individually)
             const footerLinks = Array.from(footerRef.current.querySelectorAll(`.${styles.footerMain} > li`));
-            
+
             // Animation order: copyright, footerCredits, and all footerLinks from last to first
-            
+
             // First animate copyright
             if (copyright) {
               footerTimeline.fromTo(
@@ -247,7 +253,7 @@ export default function Home() {
                 "-=0.3" // Start slightly before previous animation ends
               );
             }
-            
+
             // Then animate footerCredits
             if (footerCredits) {
               footerTimeline.fromTo(
@@ -262,7 +268,7 @@ export default function Home() {
                 "-=0.3" // Start slightly before previous animation ends
               );
             }
-            
+
             // Animate footer links
             if (footerLinks.length) {
               footerLinks.forEach((link, index) => {
@@ -286,8 +292,107 @@ export default function Home() {
     { scope: container, dependencies: [pageContent] }
   );
 
+  useLayoutEffect(() => {
+    // Only run if pageContent exists
+    if (!pageContent) return;
 
-  
+    const maskedElements = document.querySelectorAll<HTMLElement>(".masked-lines");
+
+    if (maskedElements.length > 0) {
+      maskedElements.forEach((element) => {
+        // Get the original text
+        const text = element.innerHTML;
+        // Clear the element content
+        element.innerHTML = "";
+
+        // Set words per line based on class
+        const wordsPerLine = 3;
+
+        // Check if text contains HTML breaks
+        const hasBreaks = text.includes("<br>");
+
+        if (hasBreaks) {
+          // Process as multi-line
+          const lines = text.split("<br>");
+
+          lines.forEach((line) => {
+            // Skip empty lines
+            if (line.trim() === "") return;
+
+            // Create container for this line
+            const lineEl = document.createElement("div");
+            lineEl.classList.add("line");
+
+            // Create element for the text
+            const textEl = document.createElement("div");
+            textEl.innerHTML = line;
+
+            // Create the mask element
+            const maskEl = document.createElement("div");
+            maskEl.classList.add("line-mask");
+
+            // Assemble the line
+            lineEl.appendChild(textEl);
+            lineEl.appendChild(maskEl);
+            element.appendChild(lineEl);
+          });
+        } else {
+          // For single-line text, split by spaces or after a certain number of words
+          const words = text.split(" ");
+          const linesArray: string[] = [];
+          let currentLine: string[] = [];
+
+          // Group words into lines (customize this based on your design)
+          words.forEach((word) => {
+            currentLine.push(word);
+            // Create a new line after X words or if word contains line break
+            if (currentLine.length === wordsPerLine || word.includes("\n")) {
+              linesArray.push(currentLine.join(" "));
+              currentLine = [];
+            }
+          });
+
+          // Add any remaining words
+          if (currentLine.length > 0) {
+            linesArray.push(currentLine.join(" "));
+          }
+
+          // Create elements for each line
+          linesArray.forEach((line) => {
+            // Create line elements
+            const lineEl = document.createElement("div");
+            lineEl.classList.add("line");
+
+            const textEl = document.createElement("div");
+            textEl.innerHTML = line;
+
+            const maskEl = document.createElement("div");
+            maskEl.classList.add("line-mask");
+
+            lineEl.appendChild(textEl);
+            lineEl.appendChild(maskEl);
+            element.appendChild(lineEl);
+          });
+        }
+
+        // Create the animation for the line masks
+        gsap.to(element.querySelectorAll<HTMLElement>(".line-mask"), {
+          scaleY: 0,
+          transformOrigin: "top",
+          ease: "power2.out",
+          stagger: 0.4,
+          scrollTrigger: {
+            trigger: element,
+            start: "top 75%",
+            end: "bottom 25%",
+            toggleActions: "play none none none",
+            duration: 0.6,
+          },
+        });
+      });
+    }
+  }, [pageContent]); // Re-run when pageContent changes
+
   // Render loading state if pageContent is not fetched yet
   if (!pageContent) {
     return (
@@ -299,7 +404,7 @@ export default function Home() {
 
   return (
     <div className={`${styles.page}`} ref={container}>
-       <CustomCursor hoveredProject={hoveredProject}  hoveredProjectImage={hoveredProjectImage} />
+      <CustomCursor hoveredProject={hoveredProject} hoveredProjectImage={hoveredProjectImage} />
       <header className={`${styles.siteHeader} container`}>
         <SiteNav />
         <div className={styles.hero} ref={heroRef}>
@@ -315,11 +420,11 @@ export default function Home() {
           <h2 className={`${styles.projectsTitle} txt-up h4-med`}>{pageContent.projectsTitle}</h2>
           <ul className={styles.projectsList}>
             {projects.map((project) => (
-              <ProjectItem 
-              key={project._id} 
-              project={project} 
-              onMouseEnter={() => handleProjectHover(project.title, project.heroImage)}
-              onMouseLeave={() => handleProjectHover(null, null)}
+              <ProjectItem
+                key={project._id}
+                project={project}
+                onMouseEnter={() => handleProjectHover(project.title, project.heroImage)}
+                onMouseLeave={() => handleProjectHover(null, null)}
               />
             ))}
           </ul>
@@ -327,19 +432,15 @@ export default function Home() {
         <section className={styles.services} ref={servicesRef}>
           <h3 className={`${styles.servicesTitle} h1-large`}>{pageContent.servicesTitle}</h3>
           <ul className={`${styles.servicesList}`}>
-          <li 
-          className={`${styles.servicesList__item} ${styles.techStack} fp`}
-          key={"techStackList"}
-          >
-            {pageContent.techStackList.map((technology: StackItem) => (
-              <div 
-              key={technology.techTitle} 
-              className={`${styles.techStack__item} monospace txt-up`}
-              style={{ '--hue': `${technology.randomHue}deg` } as React.CSSProperties}
-              >
-                <span className={styles.techItem__title}>{technology.techTitle}</span>
-                {
-                  technology.techLogo?.asset._ref && (
+            <li className={`${styles.servicesList__item} ${styles.techStack} fp`} key={"techStackList"}>
+              {pageContent.techStackList.map((technology: StackItem) => (
+                <div
+                  key={technology.techTitle}
+                  className={`${styles.techStack__item} monospace txt-up`}
+                  style={{ "--hue": `${technology.randomHue}deg` } as React.CSSProperties}
+                >
+                  <span className={styles.techItem__title}>{technology.techTitle}</span>
+                  {technology.techLogo?.asset._ref && (
                     <Image
                       src={urlForImage(technology.techLogo).url()}
                       alt={technology.techTitle}
@@ -347,11 +448,10 @@ export default function Home() {
                       width={64}
                       className={`${styles.techLogo} img-responsive`}
                     />
-                  )
-                }
-              </div>
-            ))}
-          </li>
+                  )}
+                </div>
+              ))}
+            </li>
             {pageContent.servicesList.map((service: ServiceItem) => (
               <li key={service?.serviceTitle} className={`${styles.servicesList__item} fp-col`}>
                 <h3 className={`${styles.serviceTitle} h3`}>{service.serviceTitle}</h3>
@@ -361,7 +461,7 @@ export default function Home() {
           </ul>
         </section>
         <section className={styles.about} id="about">
-          <h4 className={`${styles.aboutTitle} txt-up h1-jumbo`} ref={aboutRef}>
+          <h4 className={`${styles.aboutTitle} txt-up h1-jumbo masked-lines`} ref={aboutRef}>
             {pageContent.aboutTitle}
           </h4>
           <p className={`${styles.aboutText} h3`} ref={aboutTextRef}>
@@ -393,10 +493,15 @@ export default function Home() {
             </li>
           </ul>
           <div className={styles.footerBottom} id="footerBottom">
-            <a href="https://www.linkedin.com/in/rei-sikk18/" target="_blank" 
-            rel="noopener norefferer" 
-            aria-label="Visit Rei's LinkedIn profile"
-            className="txt-up h5-med footerCredits monospace">Development & design by Rei Sikk</a>
+            <a
+              href="https://www.linkedin.com/in/rei-sikk18/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit Rei's LinkedIn profile"
+              className="txt-up h5-med footerCredits monospace"
+            >
+              Development & design by Rei Sikk
+            </a>
             <p className="copyright monospace">&copy; {new Date().getFullYear()} All rights reserved</p>
           </div>
         </div>

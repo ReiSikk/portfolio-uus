@@ -19,17 +19,19 @@ interface CustomCursorProps {
 export default function CustomCursor({ hoveredProject, hoveredProjectImage }: CustomCursorProps) {
   const { x, y } = useMousePosition();
   const [isVisible, setIsVisible] = useState(false);
+  const [initialPositionSet, setInitialPositionSet] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const [cursorImage, setCursorImage] = useState<string | null>(null);
 
-  // State for initial position detection
-  const [initialPositionSet, setInitialPositionSet] = useState(false);
+  // Store previous position for smooth animation
+  const prevPosition = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     // Only make cursor visible after we have valid coordinates
     if (x !== undefined && y !== undefined && x !== 0 && y !== 0) {
       setInitialPositionSet(true);
+      prevPosition.current = { x, y };
     }
   }, [x, y]);
   
@@ -69,18 +71,39 @@ export default function CustomCursor({ hoveredProject, hoveredProjectImage }: Cu
 
   // Handle visibility and text content
   useEffect(() => {
-    // Don't run effect on mobile
+
     if (isMobile) return;
 
-    if (hoveredProject) {
-
-      // Make cursor visible
+    if (hoveredProject && initialPositionSet) {
       setIsVisible(true);
     } else {
-      // Hide cursor when not hovering
       setIsVisible(false);
+
     }
-  }, [hoveredProject, isMobile]);
+  }, [hoveredProject, isMobile, initialPositionSet]);
+
+    // Smooth cursor animation with GSAP
+    useEffect(() => {
+      if (!cursorRef.current || !initialPositionSet || !isVisible) return;
+      
+      // Only animate if position has changed
+      if (prevPosition.current.x !== x || prevPosition.current.y !== y) {
+        // Animate cursor movement with fromTo for smoother motion
+        gsap.to(
+          cursorRef.current,
+          { 
+            left: x, 
+            top: y, 
+            duration: 0.3, // Lower for faster response, higher for smoother movement
+            ease: "power3.inOut", // Try different easing functions
+            overwrite: "auto", // Important for handling frequent updates
+          }
+        );
+        
+        // Update previous position after animation starts
+        prevPosition.current = { x: x || 0, y: y || 0 };
+      }
+    }, [x, y, initialPositionSet, isVisible]);
 
   // Handle animations whenever text or visibility changes
   useEffect(() => {
@@ -96,7 +119,6 @@ export default function CustomCursor({ hoveredProject, hoveredProjectImage }: Cu
           opacity: 1,
           duration: 0.2,
           ease: "power2.out",
-          delay: 0.1,
         }
       );
     }
