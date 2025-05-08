@@ -21,13 +21,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CustomCursor from "./components/CustomCursor";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { T, Var } from "gt-next";
-import { useGT } from "gt-next/client";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Home() {
-  // Translation hook
-  const t = useGT();
 
 	const [hoveredProject, setHoveredProject] = useState<string | null>(null);
 	const [hoveredProjectImage, setHoveredProjectImage] =
