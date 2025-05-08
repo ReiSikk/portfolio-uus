@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run translate && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "translate": "npx gtx-cli translate"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -15,6 +16,7 @@
     "@portabletext/types": "^2.0.13",
     "@sanity/client": "^6.28.1",
     "@sanity/image-url": "^1.1.0",
+    "gt-next": "^5.2.25",
     "lucide-react": "^0.476.0",
     "next": "^15.3.1",
     "react": "^19.0.0",
@@ -28,6 +30,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.7",
+    "gtx-cli": "^1.2.7",
     "typescript": "^5"
   }
 }
