@@ -27,6 +27,8 @@ export default async function ProjectPage(props: Props) {
 
   // Fetch project by ID
   const project = await getProject(projectId);
+  console.log(project)
+
 
   // If project not found, return 404
   if (!project) {
@@ -74,12 +76,20 @@ export default async function ProjectPage(props: Props) {
                 ))}
               </ul>
             </div>
+            <div className={styles.projectLinks}>
             {project.link && (
               <a href={project?.link} target="_blank" rel="noopener noreferrer" className={`${styles.link} txt-up`}>
                 <span className={styles.divider}></span>
                 <span className={styles.text}>Visit website</span>
               </a>
             )}
+            {project.githubLink && (
+              <a href={project?.githubLink} target="_blank" rel="noopener noreferrer" className={`${styles.link} txt-up`}>
+                <span className={styles.divider}></span>
+                <span className={styles.text}>Github repo</span>
+              </a>
+            )}
+            </div>
             <div className={styles.project__description}>
               <PortableText
                 value={project.description}

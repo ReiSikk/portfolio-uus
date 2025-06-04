@@ -45,17 +45,24 @@
   }
 }
 
+.projectLinks {
+  margin-block: 24px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    margin-bottom: 2.222vw 6.9444vw;
+    gap: 12px;
+  }
+
+}
 .link {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  margin-block: 24px 64px;
   background: var(--dark);
   width: fit-content;
-
-  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
-    margin-bottom: 2.222vw 6.9444vw;
-  }
 
   &:hover {
     .text {
