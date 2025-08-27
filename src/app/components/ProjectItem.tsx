@@ -52,11 +52,13 @@ export default function ProjectItem({ project, onMouseEnter, onMouseLeave }: Pro
         >
           <div className={`${styles.trigger} fp`}>
             <h3 className="h1-large">{project.title}</h3>
-            <div className={`${styles.tags__wrap} fp`}>
-              {project.roleKeyword && <span className={styles.tag}>{project.roleKeyword}</span>}
-              {project.year && <span className={`${styles.tag} ${styles.tag_year}`}>{project.year}</span>}
+            <div className={`${styles.trigger__icons} fp`}>
+              <div className={`${styles.tags__wrap} fp`}>
+                {project.roleKeyword && <span className={styles.tag}>{project.roleKeyword}</span>}
+                {project.year && <span className={`${styles.tag} ${styles.tag_year}`}>{project.year}</span>}
+              </div>
+              <ArrowUpRight size={96} strokeWidth={1} className={`${styles.triggerIcon} img-responsive`} />
             </div>
-            <ArrowUpRight size={96} strokeWidth={1} className={`${styles.triggerIcon} img-responsive`} />
           </div>
         </Link>
       </li>

@@ -103,6 +103,23 @@
   cursor: pointer;
   transition: opacity 0.2s ease, padding 0.4s ease;
   padding-block: clamp(16px, 2vw, 24px);
+  @media only screen and (max-width: 767px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+  }
+}
+.trigger__icons {
+  align-items: center;
+  flex-wrap: wrap-reverse;
+  justify-content: flex-end;
+  width: 100%;
+  column-gap: 2rem;
+  
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+    column-gap: clamp(2rem, 2vw, 6rem);
+    width: auto;
+  }
 }
 
 .triggerIcon {
@@ -110,10 +127,14 @@
   transition: transform 0.6s ease, color 0.3s ease-out, background 0.3s ease, stroke 0.5s ease;
   background: transparent;
   border-radius: 50%;
-  width: clamp(32px, 9vw, 96px);
-  height: clamp(32px, 9vw, 96px);
+  width: clamp(32px, 9vw, 82px);
+  height: clamp(32px, 9vw, 82px);
   min-width: 32px;
   min-height: 32px;
+  margin-left: auto;
+  @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
+      margin-left: 0;
+  }
 }
 
 .triggerContent {
