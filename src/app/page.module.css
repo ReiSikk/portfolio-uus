@@ -103,7 +103,11 @@
   cursor: pointer;
   transition: opacity 0.2s ease, padding 0.4s ease;
   padding-block: clamp(16px, 2vw, 24px);
-  @media only screen and (max-width: 767px) {
+}
+/* Target trigger class which doesn not have footerlink */
+
+.projectsList__item > a:not(.footerLink) > .trigger:not(.footerLink) {
+    @media only screen and (max-width: 767px) {
       flex-direction: column;
       align-items: flex-start;
       gap: 8px;

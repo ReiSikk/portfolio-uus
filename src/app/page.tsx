@@ -497,7 +497,7 @@ export default function Home() {
             {pageContent.footerLinks.map((link: FooterLink) => (
               <li key={link.text} className={styles.projectsList__item}>
                 <a href={link.url} className="footerLink" target="_blank" rel="noopener noreferrer">
-                  <div className={`${styles.trigger} footerLink fp`}>
+                  <div className={`${styles.trigger} ${styles.footerLink} fp`}>
                     <span className="h1-large">{link.text}</span>
                     <ArrowUpRight size={96} strokeWidth={1} className={`${styles.triggerIcon} img-responsive`} />
                   </div>
@@ -506,7 +506,7 @@ export default function Home() {
             ))}
             <li className={styles.projectsList__item}>
               <a href="mailto:sikkrei@gmail.com" className="footerLink">
-                <div className={`${styles.trigger} footerLink fp`}>
+                <div className={`${styles.trigger} ${styles.footerLink} fp`}>
                   <span className="h1-large">Email me</span>
                   <ArrowUpRight size={96} strokeWidth={1} className={`${styles.triggerIcon} img-responsive`} />
                 </div>
