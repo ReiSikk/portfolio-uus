@@ -27,8 +27,6 @@ export default async function ProjectPage(props: Props) {
 
   // Fetch project by ID
   const project = await getProject(projectId);
-  console.log(project)
-
 
   // If project not found, return 404
   if (!project) {

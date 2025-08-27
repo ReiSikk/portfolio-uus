@@ -1,19 +1,26 @@
 "use client";
 
 import styles from "./page.module.css";
-import { Project, ServiceItem, FooterLink, PageContent, StackItem } from "./types/sanity";
-import sanityClient from "./lib/sanity";
-import { ArrowUpRight } from "lucide-react";
+// Components
 import ProjectItem from "./components/ProjectItem";
 import SiteNav from "./components/SiteNav";
-import { useRef, useEffect, useState, useLayoutEffect } from "react";
-import { urlForImage } from "./lib/sanity";
 import Image from "next/image";
+// Sanity CMS
+import { Project, ServiceItem, FooterLink, PageContent, StackItem } from "./types/sanity";
+import sanityClient from "./lib/sanity";
+import { urlForImage } from "./lib/sanity";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+// GSAP
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+// Lenis Smooth Scroll
+import { ReactLenis } from 'lenis/react';
+import type { LenisRef } from 'lenis/react';
+// Lucide
+import { ArrowUpRight } from "lucide-react";
+import { useRef, useEffect, useState, useLayoutEffect } from "react";
 import CustomCursor from "./components/CustomCursor";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -393,6 +400,19 @@ export default function Home() {
     }
   }, [pageContent]); // Re-run when pageContent changes
 
+
+  // Initalize Lenis smooth scrolling
+  const lenisRef = useRef<LenisRef>(null)
+
+  useEffect(() => {
+    function update(time: number) {
+      lenisRef.current?.lenis?.raf(time * 1000)
+    }
+    gsap.ticker.add(update)
+  
+    return () => gsap.ticker.remove(update)
+  }, [])
+
   // Render loading state if pageContent is not fetched yet
   if (!pageContent) {
     return (
@@ -404,6 +424,7 @@ export default function Home() {
 
   return (
     <div className={`${styles.page}`} ref={container}>
+      <ReactLenis root options={{ autoRaf: false }} ref={lenisRef} />
       <CustomCursor hoveredProject={hoveredProject} hoveredProjectImage={hoveredProjectImage} />
       <header className={`${styles.siteHeader} container`}>
         <SiteNav />
