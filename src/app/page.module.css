@@ -115,6 +115,8 @@
   justify-content: flex-end;
   width: 100%;
   column-gap: 2rem;
+  user-select: none;
+  pointer-events: none;
   
   @media only screen and (min-width: 768px) and (max-width: 1024px), only screen and (min-width: 1025px) {
     column-gap: clamp(2rem, 2vw, 6rem);
@@ -410,8 +412,7 @@
   }
 
   /* When hovering any project in projects section, reduce opacity of all projects */
-  .projects .projectsList:hover .projectsList__item a,
-  .projects .projectsList:hover .projectsList__item div:first-child {
+  .projects .projectsList:hover .projectsList__item a{
     opacity: 0.5;
   }
 
