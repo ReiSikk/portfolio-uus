@@ -24,7 +24,9 @@ export interface Project {
         width: number;
       };
     }[]; 
-    roles: string[];
+  roles: string[];
+  year?: number | string;
+  roleKeyword?: string;
   }
   
 

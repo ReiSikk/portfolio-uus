@@ -90,8 +90,7 @@
     margin-bottom: 1.666vw;
   }
 }
-.projectsList {
-}
+
 .projectsList__item {
   position: relative;
   transition: color 0.3s ease-out;
@@ -123,6 +122,34 @@
   opacity: 0;
   transition: all 0.5s ease;
   padding: 0;
+}
+
+/* Tag for use inside trigger between title and arrow */
+.tags__wrap {
+  gap: 1rem;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 9999px;
+  border: 1px solid var(--cream);
+  color: var(--cream);
+  background: transparent;
+  text-transform: uppercase;
+  font-size: var(--btn-small);
+  font-weight: var(--btn-small-fw);
+  letter-spacing: var(--btn-small-lspacing);
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+
+  &.tag_year {
+    background: var(--cream);
+    color: var(--dark);
+  }
 }
 
 /* Services section in Main */
@@ -387,6 +414,11 @@
   .footer .footerMain:hover .projectsList__item a,
   .footer .footerMain:hover .projectsList__item .trigger {
     opacity: 0.5;
+  }
+
+  .projectsList__item > .trigger {
+    justify-content: space-evenly;
+
   }
 
   /* Restore opacity and add transform effect for the specific one being hovered */

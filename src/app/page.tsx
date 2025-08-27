@@ -49,7 +49,7 @@ export default function Home() {
   //***** Fetch data on component mount *****
   useEffect(() => {
     async function fetchData() {
-      const projectQuery = `*[_type == "project"]`;
+      const projectQuery = `*[_type == "project"] | order(orderRank)`
       const fetchedProjects: Project[] = await sanityClient.fetch(projectQuery);
 
       const pageQuery = `*[_type == "pageContent"][0]`;
