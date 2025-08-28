@@ -159,5 +159,8 @@
   }
 }
 .galleryItem {
-  height: 23.472vw;
+  /* height: 23.472vw; */
+  img {
+    border-radius: 4px;
+  }
 }
