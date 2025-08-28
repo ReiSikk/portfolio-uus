@@ -64,7 +64,11 @@ export default async function ProjectPage(props: Props) {
       <main className={`${styles.projectPage} container fp`}>
         <section className={styles.project__main}>
           <div className={styles.main__wrapper}>
-            <h1 className={`${styles.title} h1-large`}>{project.title}</h1>
+            <h1 className={`${styles.title} h1-large`}>
+              {project.title}
+            </h1>
+            <br />
+            {project.year && <span className={`tag tag_year`}>{project.year}</span>}
             <div className={styles.roles}>
               <ul className={`${styles.rolesList} fp`}>
                 {project.roles.map((role: string, index: number) => (
