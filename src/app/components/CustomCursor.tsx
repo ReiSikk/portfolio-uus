@@ -8,7 +8,6 @@ import gsap from "gsap";
 import useViewportSize from "../lib/viewportSize";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { urlForImage } from "@/app/lib/sanity";
-import Image from "next/image";
 
 gsap.registerPlugin(useGSAP);
 
