@@ -105,12 +105,11 @@
   padding-block: clamp(16px, 2vw, 24px);
 }
 /* Target trigger class which doesn not have footerlink */
-
-.projectsList__item > a:not(.footerLink) > .trigger:not(.footerLink) {
-    @media only screen and (max-width: 767px) {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
+@media only screen and (max-width: 767px) {
+  .projectsList__item > a:not(.footerLink) > .trigger:not(.footerLink) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 }
 .trigger__icons {
@@ -399,10 +398,10 @@
 
   /* restore opacity and add padding for the specific project being hovered */
   .projects .projectsList .projectsList__item a:hover,
-  .projects .projectsList .projectsList__item div:first-child:hover {
+  .projects .projectsList .projectsList__item .trigger:hover {
     color: var(--cream);
     opacity: 1;
-    padding-inline: 0.34722vw;
+
   }
 
   /* ===== FOOTER LINKS HOVER STYLES ===== */

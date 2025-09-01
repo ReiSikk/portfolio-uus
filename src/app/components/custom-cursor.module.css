@@ -7,26 +7,31 @@
   width: 30vw;
   height: 20vw;
   pointer-events: none;
-  transform: translate(10%, 10%);
+  transform: translate(7.5%, -50%);
   transition: width 0.3s, height 0.3s;
-  will-change: transform;
+  will-change: transform, opacity;
   opacity: 0;
-  display: none;
+  visibility: hidden;
 }
 .customCursor.visible {
-  display: flex;
   opacity: 1;
+  visibility: visible;
+  .cursorImage {
+    transform: translateY(0);
+  }
 }
 
 /* Image styling */
 .cursorImageContainer {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   overflow: hidden;
+  background: var(--cream);
+  border-radius: 4px;
+  inset: 0;
   border: 1.6rem solid var(--cream);
   z-index: 1;
 }
-
+.cursorImage {
+  transform: translateY(-100%);
+  transition: transform 3s ease;
+}

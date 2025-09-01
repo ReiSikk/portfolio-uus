@@ -8,6 +8,7 @@ import gsap from "gsap";
 import useViewportSize from "../lib/viewportSize";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { urlForImage } from "@/app/lib/sanity";
+import Image from "next/image";
 
 gsap.registerPlugin(useGSAP);
 
@@ -156,11 +157,20 @@ export default function CustomCursor({ hoveredProject, hoveredProjectImage }: Cu
             className={styles.cursorImageContainer}
             ref={imageRef}
             style={{
-              backgroundImage: `url(${cursorImage})`,
+              // backgroundImage: `url(${cursorImage})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
-          ></div>
+          >
+            <Image
+              src={cursorImage}
+              alt="Custom cursor showing preview project image"
+              layout="fill"
+              objectFit="cover"
+              priority
+              className={styles.cursorImage}
+            />
+          </div>
         )}
       </div>
     </>
