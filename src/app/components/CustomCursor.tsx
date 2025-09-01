@@ -157,20 +157,11 @@ export default function CustomCursor({ hoveredProject, hoveredProjectImage }: Cu
             className={styles.cursorImageContainer}
             ref={imageRef}
             style={{
-              // backgroundImage: `url(${cursorImage})`,
+              backgroundImage: `url(${cursorImage})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
-          >
-            <Image
-              src={cursorImage}
-              alt="Custom cursor showing preview project image"
-              layout="fill"
-              objectFit="cover"
-              priority
-              className={styles.cursorImage}
-            />
-          </div>
+          ></div>
         )}
       </div>
     </>
