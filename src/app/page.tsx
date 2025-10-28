@@ -21,6 +21,7 @@ import type { LenisRef } from 'lenis/react';
 import { ArrowUpRight } from "lucide-react";
 import { useRef, useEffect, useState, useLayoutEffect } from "react";
 import CustomCursor from "./components/CustomCursor";
+import ShimmeringText from "./components/ShimmeringText";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -417,7 +418,7 @@ export default function Home() {
   if (!pageContent) {
     return (
       <div className="loading">
-        <span className="h4-med txt-up">Loading...</span>
+        <ShimmeringText text="Just a moment please..." shimmerColor="#444" color="#fff" duration={10} spread={2} />
       </div>
     );
   }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import styles from "./custom-cursor.module.css";
+import styles from "./CustomCursor.module.css";
 import useMousePosition from "../lib/cursorPosition";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
